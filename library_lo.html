@@ -879,8 +879,8 @@
       <div class="er-step">
         <div class="er-step-num">1</div>
         <div class="er-step-content">
-          <h3>📲 まずアプリをダウンロード！/ Download the App First!</h3>
-          <p style="font-size:0.9em;margin-bottom:10px">EasyReader は <strong style="color:#2e7d32">無料</strong> で使えるよ！/ EasyReader is <strong style="color:#2e7d32">FREE</strong>!</p>
+          <h3>📲 ດາວໂຫຼດແອັບກ່ອນ! / Download the App First!</h3>
+          <p style="font-size:0.9em;margin-bottom:10px">EasyReader ໃຊ້ <strong style="color:#2e7d32">ຟຣີ</strong>! / EasyReader is <strong style="color:#2e7d32">FREE</strong>!</p>
           <div class="er-dl-btns">
             <a class="er-dl-btn android" href="https://play.google.com/store/apps/details?id=com.yourdolphin.easyreader" target="_blank">🤖 Android</a>
             <a class="er-dl-btn ios" href="https://apps.apple.com/app/easyreader/id1358418885" target="_blank">🍎 iPhone / iPad</a>
@@ -895,17 +895,21 @@
       <div class="er-step">
         <div class="er-step-num">2</div>
         <div class="er-step-content">
-          <h3>⬇ 本をダウンロード！/ Download the Book!</h3>
+          <h3>⬇ ດາວໂຫຼດໜັງສື! / Download the Book!</h3>
           <div class="er-visual-steps">
             <div class="er-vstep">
               <span class="er-vstep-icon">👆</span>
-              <span class="er-vstep-text">「<strong>Download E-pub</strong>」ボタンを押す<br><small>Tap the "Download E-pub" button</small></span>
+              <span class="er-vstep-text">ກົດປຸ່ມ <strong>"Download E-pub"</strong><br><small>Tap the "Download E-pub" button on this page</small></span>
             </div>
             <div class="er-vstep-arrow">↓</div>
             <div class="er-vstep">
               <span class="er-vstep-icon">📱</span>
-              <span class="er-vstep-text">ファイルがダウンロードされる<br><small>The file is saved to your device</small></span>
+              <span class="er-vstep-text">ໄຟລ໌ຖືກບັນທຶກໃສ່ອຸປະກອນ<br><small>The .epub file is saved to your device</small></span>
             </div>
+          </div>
+          <div class="er-tip" style="margin-top:8px;font-size:0.78em">
+            💡 <strong>iPhone ໃຊ້ Safari:</strong> ກົດ <strong>⬇</strong> ທີ່ແຖບ browser → ກົດຊື່ໄຟລ໌ເພື່ອບັນທຶກ<br>
+            <small>On iPhone with Safari: tap ⬇ icon in browser bar → tap filename to save</small>
           </div>
         </div>
       </div>
@@ -916,104 +920,115 @@
       <div class="er-step">
         <div class="er-step-num">3</div>
         <div class="er-step-content">
-          <h3>📂 EasyReader に本を入れよう！/ Open in EasyReader!</h3>
+          <h3>📂 ນຳໄຟລ໌ເຂົ້າ EasyReader / Open in EasyReader</h3>
           <div class="er-os-tabs">
             <button class="er-os-tab active" onclick="switchOS('android', this)">🤖 Android</button>
             <button class="er-os-tab" onclick="switchOS('ios', this)">🍎 iPhone/iPad</button>
             <button class="er-os-tab" onclick="switchOS('windows', this)">💻 PC</button>
           </div>
 
+          <!-- ANDROID -->
           <div class="er-os-content active" id="os-android">
             <div class="er-visual-steps">
               <div class="er-vstep">
                 <span class="er-vstep-icon">📁</span>
-                <span class="er-vstep-text"><strong>Files</strong> アプリを開く<br><small>Open "Files" or "My Files" app</small></span>
+                <span class="er-vstep-text">ເປີດແອັບ <strong>Files / My Files</strong><br><small>Open the Files or My Files app</small></span>
               </div>
               <div class="er-vstep-arrow">↓</div>
               <div class="er-vstep">
                 <span class="er-vstep-icon">📥</span>
-                <span class="er-vstep-text"><strong>Downloads</strong> フォルダを開く<br><small>Open the Downloads folder</small></span>
+                <span class="er-vstep-text">ເປີດໂຟນເດີ <strong>Downloads</strong><br><small>Open the Downloads folder</small></span>
               </div>
               <div class="er-vstep-arrow">↓</div>
               <div class="er-vstep">
-                <span class="er-vstep-icon">📖</span>
-                <span class="er-vstep-text"><strong>.epub</strong> ファイルをタップ<br><small>Tap the .epub file</small></span>
+                <span class="er-vstep-icon">👆</span>
+                <span class="er-vstep-text">ກົດໄຟລ໌ <strong>.epub</strong><br><small>Tap the .epub file</small></span>
               </div>
               <div class="er-vstep-arrow">↓</div>
               <div class="er-vstep er-vstep-highlight">
                 <span class="er-vstep-icon">✅</span>
-                <span class="er-vstep-text"><strong>EasyReader</strong> を選ぶ → 完成！<br><small>Select EasyReader → Done!</small></span>
+                <span class="er-vstep-text">ເລືອກ <strong>EasyReader</strong> → ສຳເລັດ!<br><small>Select EasyReader → Done!</small></span>
               </div>
             </div>
           </div>
 
+          <!-- iOS -->
           <div class="er-os-content" id="os-ios">
             <div class="er-ios-method">
-              <div class="er-method-badge">おすすめ / Recommended</div>
+              <div class="er-method-badge">ແນະນຳ / Recommended</div>
+              <p style="font-size:0.8em;color:var(--text-sub);margin-bottom:8px">ໄຟລ໌ທີ່ດາວໂຫຼດຢູ່ໃນ <strong>Files → Downloads</strong> ຂອງ iPhone / Your downloaded file is in <strong>Files → Downloads</strong> on iPhone</p>
               <div class="er-visual-steps">
                 <div class="er-vstep">
-                  <span class="er-vstep-icon">📁</span>
-                  <span class="er-vstep-text"><strong>Files（ファイル）</strong>アプリを開く<br><small>Open the Files app</small></span>
+                  <span class="er-vstep-icon">📱</span>
+                  <span class="er-vstep-text">ໄປທີ່ Homescreen → ຊອກຫາແອັບ <strong>Files (ໄຟລ໌)</strong> → ກົດເປີດ<br><small>Go to Home screen → find the <strong>Files</strong> app → tap to open</small></span>
                 </div>
                 <div class="er-vstep-arrow">↓</div>
                 <div class="er-vstep">
                   <span class="er-vstep-icon">📥</span>
-                  <span class="er-vstep-text"><strong>Downloads</strong> を開く<br><small>Open Downloads folder</small></span>
+                  <span class="er-vstep-text">ກົດ <strong>"Browse"</strong> (ລຸ່ມຂວາ) → <strong>"On My iPhone"</strong> → <strong>"Downloads"</strong><br><small>Tap <strong>"Browse"</strong> (bottom right) → <strong>"On My iPhone"</strong> → <strong>"Downloads"</strong></small></span>
+                </div>
+                <div class="er-vstep-arrow">↓</div>
+                <div class="er-vstep">
+                  <span class="er-vstep-icon">🔍</span>
+                  <span class="er-vstep-text">ຊອກຫາໄຟລ໌ທີ່ມີຊື່ລົງທ້າຍ <strong>.epub</strong><br><small>Look for the file ending in <strong>.epub</strong></small></span>
                 </div>
                 <div class="er-vstep-arrow">↓</div>
                 <div class="er-vstep">
                   <span class="er-vstep-icon">👆</span>
-                  <span class="er-vstep-text"><strong>.epub</strong> ファイルを<strong>長押し</strong><br><small>Long press the .epub file</small></span>
+                  <span class="er-vstep-text">ກົດຄ້າງ (long press) ໄຟລ໌ <strong>.epub</strong> ຈົນກວ່າເມນູປາກົດ<br><small>Long press (hold) the .epub file until a menu appears</small></span>
                 </div>
                 <div class="er-vstep-arrow">↓</div>
                 <div class="er-vstep">
                   <span class="er-vstep-icon">📤</span>
-                  <span class="er-vstep-text"><strong>「共有」/ "Share"</strong> をタップ<br><small>Tap Share</small></span>
+                  <span class="er-vstep-text">ກົດ <strong>"Share" / ແບ່ງປັນ</strong> ໃນເມນູ<br><small>Tap <strong>"Share"</strong> in the menu</small></span>
                 </div>
                 <div class="er-vstep-arrow">↓</div>
                 <div class="er-vstep">
                   <span class="er-vstep-icon">🔽</span>
-                  <span class="er-vstep-text">下にスクロールして<br><strong>"Copy to EasyReader"</strong> をタップ<br><small>Scroll down → tap "Copy to EasyReader"</small></span>
+                  <span class="er-vstep-text">ເລື່ອນລົງໃນລາຍການ → ກົດ <strong>"Copy to EasyReader"</strong><br><small>Scroll down in the list → tap <strong>"Copy to EasyReader"</strong></small></span>
                 </div>
                 <div class="er-vstep-arrow">↓</div>
                 <div class="er-vstep er-vstep-highlight">
                   <span class="er-vstep-icon">✅</span>
-                  <span class="er-vstep-text">EasyReader が開いて本が追加される！<br><small>EasyReader opens and book is added!</small></span>
+                  <span class="er-vstep-text">EasyReader ເປີດ ແລະ ໜັງສືຖືກເພີ່ມ! / EasyReader opens and book is added!</span>
                 </div>
               </div>
             </div>
             <div class="er-tip" style="margin-top:12px;font-size:0.78em">
-              💡 <strong>EasyReader が見つからないとき / If you can't find EasyReader:</strong><br>
-              「共有」画面の右端まで横スクロール → <strong>「その他」/ "More"</strong> をタップ → EasyReader をオンにする<br>
-              <small>Scroll right in Share sheet → tap "More" → turn on EasyReader</small>
+              💡 <strong>ຖ້າຫາ EasyReader ບໍ່ພົບໃນລາຍການ Share:</strong><br>
+              ເລື່ອນຂວາສຸດໃນລາຍການ → ກົດ <strong>"More / ເພີ່ມເຕີມ"</strong> → ເປີດໃຊ້ EasyReader<br>
+              <small>Scroll all the way right in Share sheet → tap <strong>"More"</strong> → enable EasyReader</small><br><br>
+              💡 <strong>ຖ້າໄຟລ໌ບໍ່ຢູ່ໃນ Downloads:</strong><br>
+              ລອງເບິ່ງໃນ <strong>Files → iCloud Drive → Downloads</strong> ຫຼື ໃຊ້ <strong>Search (🔍)</strong> ຊອກ ".epub"<br>
+              <small>Try <strong>Files → iCloud Drive → Downloads</strong> or use <strong>Search (🔍)</strong> to find ".epub"</small>
             </div>
           </div>
 
+          <!-- WINDOWS -->
           <div class="er-os-content" id="os-windows">
             <div class="er-visual-steps">
               <div class="er-vstep">
                 <span class="er-vstep-icon">💻</span>
-                <span class="er-vstep-text">EasyReader を PC で開く<br><small>Open EasyReader on your PC</small></span>
+                <span class="er-vstep-text">ເປີດ EasyReader ໃນ PC<br><small>Open EasyReader on your PC</small></span>
               </div>
               <div class="er-vstep-arrow">↓</div>
               <div class="er-vstep">
                 <span class="er-vstep-icon">➕</span>
-                <span class="er-vstep-text"><strong>"Add Book"</strong> をクリック<br><small>Click "Add Book"</small></span>
+                <span class="er-vstep-text">ກົດ <strong>"Add Book"</strong><br><small>Click "Add Book"</small></span>
               </div>
               <div class="er-vstep-arrow">↓</div>
               <div class="er-vstep">
                 <span class="er-vstep-icon">📂</span>
-                <span class="er-vstep-text">Downloads から <strong>.epub</strong> ファイルを選ぶ<br><small>Select the .epub file from Downloads</small></span>
+                <span class="er-vstep-text">ເລືອກໄຟລ໌ <strong>.epub</strong> ຈາກໂຟນເດີ Downloads<br><small>Select the .epub file from Downloads folder</small></span>
               </div>
               <div class="er-vstep-arrow">↓</div>
               <div class="er-vstep er-vstep-highlight">
                 <span class="er-vstep-icon">✅</span>
-                <span class="er-vstep-text">My Library に本が追加される！<br><small>Book appears in My Library!</small></span>
+                <span class="er-vstep-text">ໜັງສືຢູ່ໃນ My Library! / Book appears in My Library!</span>
               </div>
             </div>
             <div class="er-tip" style="margin-top:12px;font-size:0.78em">
-              💡 ドラッグ＆ドロップでも追加できます！<br>
-              <small>You can also drag and drop the file directly into EasyReader!</small>
+              💡 ລາກໄຟລ໌ເຂົ້າໂດຍກົງໄດ້ເລີຍ! / You can also drag and drop the file directly into EasyReader!
             </div>
           </div>
         </div>
@@ -1025,34 +1040,34 @@
       <div class="er-step">
         <div class="er-step-num">4</div>
         <div class="er-step-content">
-          <h3>🎧 読み方の設定 / Reading Settings</h3>
+          <h3>🎧 ການຕັ້ງຄ່າການອ່ານ / Reading Settings</h3>
           <div class="er-settings-grid">
             <div class="er-setting-item">
               <span class="er-setting-icon">🔤</span>
               <div>
-                <strong>文字の大きさ / Font Size</strong><br>
-                <small><strong>Aa</strong> ボタン → 大きく／小さく<br>Tap Aa → make bigger or smaller</small>
+                <strong>ຂະໜາດຕົວໜັງສື / Font Size</strong><br>
+                <small>ກົດ <strong>Aa</strong> → ໃຫຍ່/ນ້ອຍ<br>Tap Aa → bigger or smaller</small>
               </div>
             </div>
             <div class="er-setting-item">
               <span class="er-setting-icon">⚡</span>
               <div>
-                <strong>読み上げ速度 / Speed</strong><br>
-                <small><strong>1x</strong> ボタン → 0.5x〜2.0x<br>Tap 1x → choose 0.5x to 2.0x</small>
+                <strong>ຄວາມໄວສຽງ / Speed</strong><br>
+                <small>ກົດ <strong>1x</strong> → 0.5x–2.0x<br>Tap 1x → choose speed</small>
               </div>
             </div>
             <div class="er-setting-item">
               <span class="er-setting-icon">🎨</span>
               <div>
-                <strong>色の変更 / Colors</strong><br>
-                <small>🎨 ボタン → 好きな色を選ぶ<br>Tap 🎨 → choose your color theme</small>
+                <strong>ສີໜ້າ/ຫຼັງ / Colors</strong><br>
+                <small>ກົດ 🎨 → ເລືອກໂທນສີ<br>Tap 🎨 → choose theme</small>
               </div>
             </div>
             <div class="er-setting-item">
               <span class="er-setting-icon">📚</span>
               <div>
                 <strong>My Library</strong><br>
-                <small>追加した本が自動で保存される<br>Books are saved automatically</small>
+                <small>ໜັງສືຖືກບັນທຶກອັດຕະໂນມັດ<br>Books saved automatically</small>
               </div>
             </div>
           </div>
