@@ -525,6 +525,264 @@
     .book-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
     .header-title h1 { font-size: 0.95em; }
   }
+
+  /* ===== EASYREADER GUIDE ===== */
+  .er-banner {
+    max-width: 1100px;
+    margin: 16px auto 0;
+    padding: 0 20px;
+  }
+  .er-banner-inner {
+    background: linear-gradient(135deg, #1a4a8a 0%, #0065A4 100%);
+    border-radius: var(--radius);
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    box-shadow: var(--shadow);
+  }
+  .er-banner-inner:hover { opacity: 0.92; }
+  .er-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    flex-shrink: 0;
+  }
+  .er-banner-text { flex: 1; }
+  .er-banner-text h3 {
+    color: white;
+    font-size: 0.95em;
+    font-weight: 700;
+    margin-bottom: 2px;
+  }
+  .er-banner-text p {
+    color: rgba(255,255,255,0.82);
+    font-size: 0.78em;
+    line-height: 1.4;
+  }
+  .er-banner-arrow {
+    color: white;
+    font-size: 1.4em;
+    opacity: 0.8;
+  }
+
+  /* EasyReader Modal */
+  .er-modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.6);
+    z-index: 1000;
+    overflow-y: auto;
+    padding: 20px;
+  }
+  .er-modal-overlay.active { display: flex; align-items: flex-start; justify-content: center; }
+  .er-modal {
+    background: white;
+    border-radius: var(--radius);
+    max-width: 680px;
+    width: 100%;
+    margin: 20px auto;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  }
+  .er-modal-header {
+    background: linear-gradient(135deg, #1a4a8a, #0065A4);
+    color: white;
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .er-modal-header img { width: 52px; height: 52px; border-radius: 12px; }
+  .er-modal-header h2 { font-size: 1.1em; margin-bottom: 2px; }
+  .er-modal-header p { font-size: 0.8em; opacity: 0.85; }
+  .er-modal-close {
+    margin-left: auto;
+    background: rgba(255,255,255,0.2);
+    border: none;
+    color: white;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    font-size: 1.1em;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+  .er-modal-body { padding: 24px; }
+  .er-step {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 24px;
+    align-items: flex-start;
+  }
+  .er-step-num {
+    background: var(--efa-blue);
+    color: white;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.9em;
+    flex-shrink: 0;
+  }
+  .er-step-content h3 {
+    color: var(--efa-dark);
+    font-size: 0.95em;
+    margin-bottom: 6px;
+  }
+  .er-step-content p {
+    font-size: 0.83em;
+    color: var(--text-sub);
+    line-height: 1.7;
+    margin-bottom: 6px;
+  }
+  .er-dl-btns {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 8px;
+  }
+  .er-dl-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--efa-blue);
+    color: white;
+    border-radius: 8px;
+    padding: 7px 14px;
+    font-size: 0.82em;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .er-dl-btn:hover { background: var(--efa-dark); }
+  .er-dl-btn.android { background: #2e7d32; }
+  .er-dl-btn.android:hover { background: #1b5e20; }
+  .er-dl-btn.ios { background: #1a1a1a; }
+  .er-dl-btn.ios:hover { background: #000; }
+  .er-tip {
+    background: var(--efa-light);
+    border-radius: 10px;
+    padding: 12px 14px;
+    font-size: 0.82em;
+    color: var(--efa-dark);
+    line-height: 1.7;
+    margin-top: 8px;
+  }
+  .er-tip strong { color: var(--efa-blue); }
+  .er-section-divider {
+    border: none;
+    border-top: 1.5px solid #e0e8f0;
+    margin: 20px 0;
+  }
+  .er-os-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+  .er-os-tab {
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 0.82em;
+    font-weight: 600;
+    border: 2px solid var(--efa-blue);
+    background: white;
+    color: var(--efa-blue);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .er-os-tab.active {
+    background: var(--efa-blue);
+    color: white;
+  }
+  .er-os-content { display: none; }
+  .er-os-content.active { display: block; }
+
+
+  /* Visual Steps */
+  .er-visual-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-top: 8px;
+  }
+  .er-vstep {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #f4f8fc;
+    border-radius: 10px;
+    padding: 10px 12px;
+  }
+  .er-vstep-highlight {
+    background: #e8f5e9;
+    border: 1.5px solid #4CAF50;
+  }
+  .er-vstep-icon {
+    font-size: 1.5em;
+    flex-shrink: 0;
+    width: 36px;
+    text-align: center;
+  }
+  .er-vstep-text {
+    font-size: 0.85em;
+    line-height: 1.5;
+    color: var(--text-main);
+  }
+  .er-vstep-text small {
+    color: var(--text-sub);
+    font-size: 0.88em;
+  }
+  .er-vstep-arrow {
+    text-align: center;
+    color: var(--efa-blue);
+    font-size: 1.1em;
+    margin: -2px 0;
+  }
+  .er-ios-method {
+    position: relative;
+    padding-top: 8px;
+  }
+  .er-method-badge {
+    display: inline-block;
+    background: var(--efa-accent);
+    color: white;
+    border-radius: 8px;
+    padding: 2px 10px;
+    font-size: 0.72em;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  /* Settings Grid */
+  .er-settings-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: 8px;
+  }
+  .er-setting-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    background: #f4f8fc;
+    border-radius: 10px;
+    padding: 10px 10px;
+    font-size: 0.82em;
+  }
+  .er-setting-icon {
+    font-size: 1.4em;
+    flex-shrink: 0;
+  }
+  @media (max-width: 480px) {
+    .er-settings-grid { grid-template-columns: 1fr; }
+  }
+
 </style>
 </head>
 <body>
@@ -563,6 +821,220 @@
     🔒 <strong>ຫ້າມດັດແກ້、ຫ້າມຂາຍ、ຫ້າມເຜີຍແຜ່</strong> ／
     Redistribution or resale of e-books is strictly prohibited by law.
     This library is operated under the Marrakesh Treaty.
+  </div>
+</div>
+
+<!-- ===== EASYREADER BANNER ===== -->
+<div class="er-banner" id="er-banner-wrap">
+  <div class="er-banner-inner" onclick="showERGuide()">
+    <img class="er-icon" src="data:image/jpeg;base64,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" alt="EasyReader">
+    <div class="er-banner-text">
+      <h3>📖 ອ່ານໜັງສືດ້ວຍ EasyReader — ຟຣີ / Read with EasyReader — Free</h3>
+      <p>ຕ້ອງການໂປຣແກຣມອ່ານ DAISY ເພື່ອເປີດໄຟລ໌。ກົດທີ່ນີ້ເພື່ອຮຽນຮູ້ວິທີດາວໂຫຼດ ແລະ ໃຊ້ງານ。<br>
+      A DAISY reader app is required. Tap here for download &amp; setup guide.</p>
+    </div>
+    <span class="er-banner-arrow">›</span>
+  </div>
+</div>
+
+<!-- ===== EASYREADER GUIDE MODAL ===== -->
+<div class="er-modal-overlay" id="er-modal-overlay" onclick="hideERGuide(event)">
+  <div class="er-modal">
+    <div class="er-modal-header">
+      <img src="data:image/jpeg;base64,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" alt="EasyReader">
+      <div>
+        <h2>EasyReader — Setup Guide</h2>
+        <p>ຄູ່ມືການດາວໂຫຼດ ແລະ ການໃຊ້ງານ / Download &amp; How to Use</p>
+      </div>
+      <button class="er-modal-close" onclick="hideERGuide()">✕</button>
+    </div>
+    <div class="er-modal-body">
+
+      <!-- STEP 1 -->
+      <div class="er-step">
+        <div class="er-step-num">1</div>
+        <div class="er-step-content">
+          <h3>📲 まずアプリをダウンロード！/ Download the App First!</h3>
+          <p style="font-size:0.9em;margin-bottom:10px">EasyReader は <strong style="color:#2e7d32">無料</strong> で使えるよ！/ EasyReader is <strong style="color:#2e7d32">FREE</strong>!</p>
+          <div class="er-dl-btns">
+            <a class="er-dl-btn android" href="https://play.google.com/store/apps/details?id=com.yourdolphin.easyreader" target="_blank">🤖 Android</a>
+            <a class="er-dl-btn ios" href="https://apps.apple.com/app/easyreader/id1358418885" target="_blank">🍎 iPhone / iPad</a>
+            <a class="er-dl-btn" href="https://yourdolphin.com/EasyReader-App" target="_blank" style="background:#555">💻 Windows PC</a>
+          </div>
+        </div>
+      </div>
+
+      <hr class="er-section-divider">
+
+      <!-- STEP 2 -->
+      <div class="er-step">
+        <div class="er-step-num">2</div>
+        <div class="er-step-content">
+          <h3>⬇ 本をダウンロード！/ Download the Book!</h3>
+          <div class="er-visual-steps">
+            <div class="er-vstep">
+              <span class="er-vstep-icon">👆</span>
+              <span class="er-vstep-text">「<strong>Download E-pub</strong>」ボタンを押す<br><small>Tap the "Download E-pub" button</small></span>
+            </div>
+            <div class="er-vstep-arrow">↓</div>
+            <div class="er-vstep">
+              <span class="er-vstep-icon">📱</span>
+              <span class="er-vstep-text">ファイルがダウンロードされる<br><small>The file is saved to your device</small></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <hr class="er-section-divider">
+
+      <!-- STEP 3 -->
+      <div class="er-step">
+        <div class="er-step-num">3</div>
+        <div class="er-step-content">
+          <h3>📂 EasyReader に本を入れよう！/ Open in EasyReader!</h3>
+          <div class="er-os-tabs">
+            <button class="er-os-tab active" onclick="switchOS('android', this)">🤖 Android</button>
+            <button class="er-os-tab" onclick="switchOS('ios', this)">🍎 iPhone/iPad</button>
+            <button class="er-os-tab" onclick="switchOS('windows', this)">💻 PC</button>
+          </div>
+
+          <div class="er-os-content active" id="os-android">
+            <div class="er-visual-steps">
+              <div class="er-vstep">
+                <span class="er-vstep-icon">📁</span>
+                <span class="er-vstep-text"><strong>Files</strong> アプリを開く<br><small>Open "Files" or "My Files" app</small></span>
+              </div>
+              <div class="er-vstep-arrow">↓</div>
+              <div class="er-vstep">
+                <span class="er-vstep-icon">📥</span>
+                <span class="er-vstep-text"><strong>Downloads</strong> フォルダを開く<br><small>Open the Downloads folder</small></span>
+              </div>
+              <div class="er-vstep-arrow">↓</div>
+              <div class="er-vstep">
+                <span class="er-vstep-icon">📖</span>
+                <span class="er-vstep-text"><strong>.epub</strong> ファイルをタップ<br><small>Tap the .epub file</small></span>
+              </div>
+              <div class="er-vstep-arrow">↓</div>
+              <div class="er-vstep er-vstep-highlight">
+                <span class="er-vstep-icon">✅</span>
+                <span class="er-vstep-text"><strong>EasyReader</strong> を選ぶ → 完成！<br><small>Select EasyReader → Done!</small></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="er-os-content" id="os-ios">
+            <div class="er-ios-method">
+              <div class="er-method-badge">おすすめ / Recommended</div>
+              <div class="er-visual-steps">
+                <div class="er-vstep">
+                  <span class="er-vstep-icon">📁</span>
+                  <span class="er-vstep-text"><strong>Files（ファイル）</strong>アプリを開く<br><small>Open the Files app</small></span>
+                </div>
+                <div class="er-vstep-arrow">↓</div>
+                <div class="er-vstep">
+                  <span class="er-vstep-icon">📥</span>
+                  <span class="er-vstep-text"><strong>Downloads</strong> を開く<br><small>Open Downloads folder</small></span>
+                </div>
+                <div class="er-vstep-arrow">↓</div>
+                <div class="er-vstep">
+                  <span class="er-vstep-icon">👆</span>
+                  <span class="er-vstep-text"><strong>.epub</strong> ファイルを<strong>長押し</strong><br><small>Long press the .epub file</small></span>
+                </div>
+                <div class="er-vstep-arrow">↓</div>
+                <div class="er-vstep">
+                  <span class="er-vstep-icon">📤</span>
+                  <span class="er-vstep-text"><strong>「共有」/ "Share"</strong> をタップ<br><small>Tap Share</small></span>
+                </div>
+                <div class="er-vstep-arrow">↓</div>
+                <div class="er-vstep">
+                  <span class="er-vstep-icon">🔽</span>
+                  <span class="er-vstep-text">下にスクロールして<br><strong>"Copy to EasyReader"</strong> をタップ<br><small>Scroll down → tap "Copy to EasyReader"</small></span>
+                </div>
+                <div class="er-vstep-arrow">↓</div>
+                <div class="er-vstep er-vstep-highlight">
+                  <span class="er-vstep-icon">✅</span>
+                  <span class="er-vstep-text">EasyReader が開いて本が追加される！<br><small>EasyReader opens and book is added!</small></span>
+                </div>
+              </div>
+            </div>
+            <div class="er-tip" style="margin-top:12px;font-size:0.78em">
+              💡 <strong>EasyReader が見つからないとき / If you can't find EasyReader:</strong><br>
+              「共有」画面の右端まで横スクロール → <strong>「その他」/ "More"</strong> をタップ → EasyReader をオンにする<br>
+              <small>Scroll right in Share sheet → tap "More" → turn on EasyReader</small>
+            </div>
+          </div>
+
+          <div class="er-os-content" id="os-windows">
+            <div class="er-visual-steps">
+              <div class="er-vstep">
+                <span class="er-vstep-icon">💻</span>
+                <span class="er-vstep-text">EasyReader を PC で開く<br><small>Open EasyReader on your PC</small></span>
+              </div>
+              <div class="er-vstep-arrow">↓</div>
+              <div class="er-vstep">
+                <span class="er-vstep-icon">➕</span>
+                <span class="er-vstep-text"><strong>"Add Book"</strong> をクリック<br><small>Click "Add Book"</small></span>
+              </div>
+              <div class="er-vstep-arrow">↓</div>
+              <div class="er-vstep">
+                <span class="er-vstep-icon">📂</span>
+                <span class="er-vstep-text">Downloads から <strong>.epub</strong> ファイルを選ぶ<br><small>Select the .epub file from Downloads</small></span>
+              </div>
+              <div class="er-vstep-arrow">↓</div>
+              <div class="er-vstep er-vstep-highlight">
+                <span class="er-vstep-icon">✅</span>
+                <span class="er-vstep-text">My Library に本が追加される！<br><small>Book appears in My Library!</small></span>
+              </div>
+            </div>
+            <div class="er-tip" style="margin-top:12px;font-size:0.78em">
+              💡 ドラッグ＆ドロップでも追加できます！<br>
+              <small>You can also drag and drop the file directly into EasyReader!</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <hr class="er-section-divider">
+
+      <!-- STEP 4 -->
+      <div class="er-step">
+        <div class="er-step-num">4</div>
+        <div class="er-step-content">
+          <h3>🎧 読み方の設定 / Reading Settings</h3>
+          <div class="er-settings-grid">
+            <div class="er-setting-item">
+              <span class="er-setting-icon">🔤</span>
+              <div>
+                <strong>文字の大きさ / Font Size</strong><br>
+                <small><strong>Aa</strong> ボタン → 大きく／小さく<br>Tap Aa → make bigger or smaller</small>
+              </div>
+            </div>
+            <div class="er-setting-item">
+              <span class="er-setting-icon">⚡</span>
+              <div>
+                <strong>読み上げ速度 / Speed</strong><br>
+                <small><strong>1x</strong> ボタン → 0.5x〜2.0x<br>Tap 1x → choose 0.5x to 2.0x</small>
+              </div>
+            </div>
+            <div class="er-setting-item">
+              <span class="er-setting-icon">🎨</span>
+              <div>
+                <strong>色の変更 / Colors</strong><br>
+                <small>🎨 ボタン → 好きな色を選ぶ<br>Tap 🎨 → choose your color theme</small>
+              </div>
+            </div>
+            <div class="er-setting-item">
+              <span class="er-setting-icon">📚</span>
+              <div>
+                <strong>My Library</strong><br>
+                <small>追加した本が自動で保存される<br>Books are saved automatically</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
   </div>
 </div>
 
@@ -928,6 +1400,24 @@ function logDl(book) {
     epub_id: book.EPUB_ID || '',
   });
   fetch(`${SITE_CONFIG.sheets_api_url}?${params}`).catch(() => {});
+}
+
+
+// EasyReader Guide
+function showERGuide() {
+  document.getElementById('er-modal-overlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function hideERGuide(event) {
+  if (event && event.target !== document.getElementById('er-modal-overlay')) return;
+  document.getElementById('er-modal-overlay').classList.remove('active');
+  document.body.style.overflow = '';
+}
+function switchOS(os, btn) {
+  document.querySelectorAll('.er-os-tab').forEach(function(t) { t.classList.remove('active'); });
+  document.querySelectorAll('.er-os-content').forEach(function(c) { c.classList.remove('active'); });
+  document.getElementById('os-' + os).classList.add('active');
+  if (btn) btn.classList.add('active');
 }
 
 // ================================================================
