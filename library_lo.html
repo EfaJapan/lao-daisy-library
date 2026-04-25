@@ -880,6 +880,15 @@ function bookCard(b) {
   const author = b.Author ? `<span>✍ ${esc(b.Author)}</span>` : '';
   const illust = b.Illustrator ? `<span>🖌 ${esc(b.Illustrator)}</span>` : '';
   const pages = b.Pages ? `<span>📄 ${b.Pages} pages</span>` : '';
+  function fmtDate(d) {
+    if (!d) return '';
+    var s = String(d);
+    if (s.match(/^\d{4}-\d{2}-\d{2}/)) {
+      var p = s.substring(0,10).split('-');
+      return p[2] + '-' + p[1] + '-' + p[0];
+    }
+    return s;
+  }
   const ageBadge = b.Age_Group ? `<span class="tag">👶 ${b.Age_Group}</span>` : '';
   const catBadge = b.Category ? `<span class="tag">${esc(b.Category)}</span>` : '';
   const dlBtn = b.Download_Link
