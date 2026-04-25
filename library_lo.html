@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ຫໍສະໝຸດ ມັນຕິມີເດຍ ເດຊີ ລາວ</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 <style>
   :root {
     --efa-blue: #0065A4;
@@ -822,80 +821,6 @@
   }
 
 
-  /* ===== WATERMARK DOWNLOAD ===== */
-  .wm-overlay {
-    display: none;
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(0,0,0,0.7);
-    z-index: 2000;
-    align-items: center;
-    justify-content: center;
-  }
-  .wm-overlay.active { display: flex; }
-  .wm-box {
-    background: white;
-    border-radius: 16px;
-    padding: 32px 28px;
-    max-width: 340px;
-    width: 90%;
-    text-align: center;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-  }
-  .wm-icon { font-size: 2.8em; margin-bottom: 12px; }
-  .wm-title {
-    font-size: 1em;
-    font-weight: 700;
-    color: var(--efa-dark);
-    margin-bottom: 8px;
-  }
-  .wm-msg {
-    font-size: 0.82em;
-    color: var(--text-sub);
-    line-height: 1.6;
-    margin-bottom: 16px;
-  }
-  .wm-progress-bar {
-    background: var(--efa-light);
-    border-radius: 20px;
-    height: 10px;
-    overflow: hidden;
-    margin-bottom: 8px;
-  }
-  .wm-progress-inner {
-    background: linear-gradient(90deg, var(--efa-blue), var(--efa-accent));
-    height: 100%;
-    border-radius: 20px;
-    width: 0%;
-    transition: width 0.4s ease;
-  }
-  .wm-progress-label {
-    font-size: 0.78em;
-    color: var(--text-sub);
-    margin-bottom: 12px;
-  }
-  .wm-time-note {
-    font-size: 0.75em;
-    color: #aaa;
-    margin-top: 4px;
-  }
-  .wm-error {
-    color: #e53935;
-    font-size: 0.82em;
-    margin-top: 8px;
-    display: none;
-  }
-  .wm-cancel {
-    margin-top: 12px;
-    background: none;
-    border: 1.5px solid #ddd;
-    border-radius: 8px;
-    padding: 6px 20px;
-    font-size: 0.82em;
-    cursor: pointer;
-    color: var(--text-sub);
-    font-family: inherit;
-  }
 
 </style>
 </head>
@@ -1578,9 +1503,10 @@ function bookCard(b) {
   }
   const ageBadge = b.Age_Group ? `<span class="tag">👶 ${b.Age_Group}</span>` : '';
   const catBadge = b.Category ? `<span class="tag">${esc(b.Category)}</span>` : '';
-  const bookJson = JSON.stringify(b).replace(/'/g, "\\'");
   const dlBtn = b.Download_Link
-    ? `<button class="btn-download" onclick="downloadWithWatermark(${bookJson.replace(/"/g,'&quot;')})">⬇ Download E-pub</button>`
+    ? `<a class="btn-download" href="${b.Download_Link}" target="_blank"
+         onclick="logDl(${JSON.stringify(b).replace(/"/g,'&quot;')})"
+       >⬇ Download E-pub</a>`
     : `<span class="btn-coming">⏳ ກຳລັງກຽມ / Coming Soon</span>`;
 
   return `
@@ -1635,15 +1561,6 @@ function switchOS(os, btn) {
 }
 
 
-// ================================================================
-// EPUB WATERMARK DOWNLOAD (Phase B - JSZip)
-// ================================================================
-let wmAborted = false;
-
-function setProgress(pct, label) {
-  document.getElementById('wm-progress').style.width = pct + '%';
-  document.getElementById('wm-progress-label').innerText = label || pct + '%';
-}
 
 function setWmStatus(icon, title, msg) {
   document.getElementById('wm-icon').innerText = icon;
@@ -1792,10 +1709,6 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 
-<!-- ===== WATERMARK DOWNLOAD OVERLAY ===== -->
-<div class="wm-overlay" id="wm-overlay">
-  <div class="wm-box">
-    <div class="wm-icon" id="wm-icon">⚙️</div>
     <div class="wm-title" id="wm-title">ກຳລັງກຽມໄຟລ໌... / Preparing file...</div>
     <div class="wm-progress-bar">
       <div class="wm-progress-inner" id="wm-progress"></div>
