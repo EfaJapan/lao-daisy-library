@@ -1549,11 +1549,6 @@ function switchOS(os, btn) {
 
 
 
-function setWmStatus(icon, title, msg) {
-  document.getElementById('wm-icon').innerText = icon;
-  document.getElementById('wm-title').innerText = title;
-  if (msg) document.getElementById('wm-msg').innerHTML = msg;
-}
 
 
 
@@ -1674,21 +1669,5 @@ window.addEventListener('DOMContentLoaded', () => {
   regLinks.forEach(a => a.href = SITE_CONFIG.registration_form_url);
 });
 </script>
-
-    <div class="wm-title" id="wm-title">ກຳລັງກຽມໄຟລ໌... / Preparing file...</div>
-    <div class="wm-progress-bar">
-      <div class="wm-progress-inner" id="wm-progress"></div>
-    </div>
-    <div class="wm-progress-label" id="wm-progress-label">0%</div>
-    <div class="wm-msg" id="wm-msg">
-      ກະລຸນາລໍຖ້າ 30 ວິນາທີ ຫາ 2 ນາທີ<br>
-      <small>Please wait 30 seconds to 2 minutes</small>
-    </div>
-    <div class="wm-time-note">⚠️ ຢ່າປິດໜ້ານີ້ / Do not close this page</div>
-    <div class="wm-error" id="wm-error"></div>
-    <button class="wm-cancel" onclick="cancelDownload()">ຍົກເລີກ / Cancel</button>
-  </div>
-</div>
-
 </body>
 </html>
