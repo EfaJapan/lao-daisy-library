@@ -808,6 +808,18 @@
     .er-settings-grid { grid-template-columns: 1fr; }
   }
 
+
+  .er-sub-section { margin-bottom: 4px; }
+  .er-sub-title {
+    font-size: 0.82em;
+    font-weight: 700;
+    color: var(--efa-dark);
+    background: var(--efa-light);
+    border-radius: 6px;
+    padding: 5px 10px;
+    margin-bottom: 8px;
+  }
+
 </style>
 </head>
 <body>
@@ -920,115 +932,189 @@
       <div class="er-step">
         <div class="er-step-num">3</div>
         <div class="er-step-content">
-          <h3>📂 ນຳໄຟລ໌ເຂົ້າ EasyReader / Open in EasyReader</h3>
+          <h3>📂 ນຳ EPUB ເຂົ້າ EasyReader / Add EPUB to EasyReader</h3>
           <div class="er-os-tabs">
-            <button class="er-os-tab active" onclick="switchOS('android', this)">🤖 Android</button>
-            <button class="er-os-tab" onclick="switchOS('ios', this)">🍎 iPhone/iPad</button>
+            <button class="er-os-tab active" onclick="switchOS('ios', this)">🍎 iPhone/iPad</button>
+            <button class="er-os-tab" onclick="switchOS('android', this)">🤖 Android</button>
             <button class="er-os-tab" onclick="switchOS('windows', this)">💻 PC</button>
           </div>
 
-          <!-- ANDROID -->
-          <div class="er-os-content active" id="os-android">
-            <div class="er-visual-steps">
-              <div class="er-vstep">
-                <span class="er-vstep-icon">📁</span>
-                <span class="er-vstep-text">ເປີດແອັບ <strong>Files / My Files</strong><br><small>Open the Files or My Files app</small></span>
-              </div>
-              <div class="er-vstep-arrow">↓</div>
-              <div class="er-vstep">
-                <span class="er-vstep-icon">📥</span>
-                <span class="er-vstep-text">ເປີດໂຟນເດີ <strong>Downloads</strong><br><small>Open the Downloads folder</small></span>
-              </div>
-              <div class="er-vstep-arrow">↓</div>
-              <div class="er-vstep">
-                <span class="er-vstep-icon">👆</span>
-                <span class="er-vstep-text">ກົດໄຟລ໌ <strong>.epub</strong><br><small>Tap the .epub file</small></span>
-              </div>
-              <div class="er-vstep-arrow">↓</div>
-              <div class="er-vstep er-vstep-highlight">
-                <span class="er-vstep-icon">✅</span>
-                <span class="er-vstep-text">ເລືອກ <strong>EasyReader</strong> → ສຳເລັດ!<br><small>Select EasyReader → Done!</small></span>
-              </div>
-            </div>
-          </div>
-
-          <!-- iOS -->
-          <div class="er-os-content" id="os-ios">
-            <div class="er-ios-method">
-              <div class="er-method-badge">ແນະນຳ / Recommended</div>
-              <p style="font-size:0.8em;color:var(--text-sub);margin-bottom:8px">ໄຟລ໌ທີ່ດາວໂຫຼດຢູ່ໃນ <strong>Files → Downloads</strong> ຂອງ iPhone / Your downloaded file is in <strong>Files → Downloads</strong> on iPhone</p>
+          <!-- iOS (first / most complex) -->
+          <div class="er-os-content active" id="os-ios">
+            <div class="er-sub-section">
+              <div class="er-sub-title">▼ ຂັ້ນຕອນທີ 1 — ຊອກຫາໄຟລ໌ EPUB / Find the EPUB file</div>
               <div class="er-visual-steps">
                 <div class="er-vstep">
                   <span class="er-vstep-icon">📱</span>
-                  <span class="er-vstep-text">ໄປທີ່ Homescreen → ຊອກຫາແອັບ <strong>Files (ໄຟລ໌)</strong> → ກົດເປີດ<br><small>Go to Home screen → find the <strong>Files</strong> app → tap to open</small></span>
-                </div>
-                <div class="er-vstep-arrow">↓</div>
-                <div class="er-vstep">
-                  <span class="er-vstep-icon">📥</span>
-                  <span class="er-vstep-text">ກົດ <strong>"Browse"</strong> (ລຸ່ມຂວາ) → <strong>"On My iPhone"</strong> → <strong>"Downloads"</strong><br><small>Tap <strong>"Browse"</strong> (bottom right) → <strong>"On My iPhone"</strong> → <strong>"Downloads"</strong></small></span>
+                  <span class="er-vstep-text">
+                    ① ເປີດແອັບ <strong>Files (ໄຟລ໌) 📁</strong> ໃນ iPhone<br>
+                    <small>① Open the <strong>Files</strong> app on your iPhone</small>
+                  </span>
                 </div>
                 <div class="er-vstep-arrow">↓</div>
                 <div class="er-vstep">
                   <span class="er-vstep-icon">🔍</span>
-                  <span class="er-vstep-text">ຊອກຫາໄຟລ໌ທີ່ມີຊື່ລົງທ້າຍ <strong>.epub</strong><br><small>Look for the file ending in <strong>.epub</strong></small></span>
+                  <span class="er-vstep-text">
+                    ② ກົດ <strong>"Browse"</strong> (ລຸ່ມຂວາ) → <strong>"On My iPhone"</strong> → <strong>"Downloads"</strong><br>
+                    <small>② Tap <strong>"Browse"</strong> (bottom right) → <strong>"On My iPhone"</strong> → <strong>"Downloads"</strong></small>
+                  </span>
                 </div>
                 <div class="er-vstep-arrow">↓</div>
                 <div class="er-vstep">
                   <span class="er-vstep-icon">👆</span>
-                  <span class="er-vstep-text">ກົດຄ້າງ (long press) ໄຟລ໌ <strong>.epub</strong> ຈົນກວ່າເມນູປາກົດ<br><small>Long press (hold) the .epub file until a menu appears</small></span>
+                  <span class="er-vstep-text">
+                    ③ ຊອກຫາ ແລະ ກົດໄຟລ໌ <strong>.epub</strong><br>
+                    <small>③ Find and tap the <strong>.epub</strong> file</small>
+                  </span>
                 </div>
-                <div class="er-vstep-arrow">↓</div>
+              </div>
+            </div>
+
+            <div class="er-sub-section" style="margin-top:12px">
+              <div class="er-sub-title">▼ ຂັ້ນຕອນທີ 2 — ເປີດໃນ EasyReader / Open in EasyReader</div>
+              <div class="er-visual-steps">
                 <div class="er-vstep">
                   <span class="er-vstep-icon">📤</span>
-                  <span class="er-vstep-text">ກົດ <strong>"Share" / ແບ່ງປັນ</strong> ໃນເມນູ<br><small>Tap <strong>"Share"</strong> in the menu</small></span>
+                  <span class="er-vstep-text">
+                    ④ ກົດໄອຄອນ <strong>Share (□↑)</strong> ຢູ່ລຸ່ມໜ້າຈໍ<br>
+                    <small>④ Tap the <strong>Share icon (□↑)</strong> at the bottom of the screen</small>
+                  </span>
                 </div>
                 <div class="er-vstep-arrow">↓</div>
                 <div class="er-vstep">
                   <span class="er-vstep-icon">🔽</span>
-                  <span class="er-vstep-text">ເລື່ອນລົງໃນລາຍການ → ກົດ <strong>"Copy to EasyReader"</strong><br><small>Scroll down in the list → tap <strong>"Copy to EasyReader"</strong></small></span>
+                  <span class="er-vstep-text">
+                    ⑤ ເລື່ອນລົງໃນລາຍການ → ກົດ <strong>"Copy to EasyReader"</strong><br>
+                    <small>⑤ Scroll down → tap <strong>"Copy to EasyReader"</strong></small>
+                  </span>
                 </div>
                 <div class="er-vstep-arrow">↓</div>
                 <div class="er-vstep er-vstep-highlight">
                   <span class="er-vstep-icon">✅</span>
-                  <span class="er-vstep-text">EasyReader ເປີດ ແລະ ໜັງສືຖືກເພີ່ມ! / EasyReader opens and book is added!</span>
+                  <span class="er-vstep-text">
+                    ⑥ EasyReader ເປີດ → ກົດ <strong>"My Books"</strong> → ອ່ານໄດ້ເລີຍ!<br>
+                    <small>⑥ EasyReader opens → tap <strong>"My Books"</strong> → start reading!</small>
+                  </span>
                 </div>
               </div>
             </div>
+
             <div class="er-tip" style="margin-top:12px;font-size:0.78em">
-              💡 <strong>ຖ້າຫາ EasyReader ບໍ່ພົບໃນລາຍການ Share:</strong><br>
-              ເລື່ອນຂວາສຸດໃນລາຍການ → ກົດ <strong>"More / ເພີ່ມເຕີມ"</strong> → ເປີດໃຊ້ EasyReader<br>
-              <small>Scroll all the way right in Share sheet → tap <strong>"More"</strong> → enable EasyReader</small><br><br>
+              💡 <strong>ຖ້າຫາ "Copy to EasyReader" ບໍ່ພົບ:</strong><br>
+              ເລື່ອນຂວາສຸດໃນລາຍການ Share → ກົດ <strong>"More"</strong> → ເປີດໃຊ້ EasyReader<br>
+              <small>Can't find "Copy to EasyReader"? Scroll right in Share list → tap <strong>"More"</strong> → enable EasyReader</small><br><br>
               💡 <strong>ຖ້າໄຟລ໌ບໍ່ຢູ່ໃນ Downloads:</strong><br>
-              ລອງເບິ່ງໃນ <strong>Files → iCloud Drive → Downloads</strong> ຫຼື ໃຊ້ <strong>Search (🔍)</strong> ຊອກ ".epub"<br>
-              <small>Try <strong>Files → iCloud Drive → Downloads</strong> or use <strong>Search (🔍)</strong> to find ".epub"</small>
+              ລອງ <strong>Files → iCloud Drive → Downloads</strong> ຫຼື ໃຊ້ 🔍 Search ຊອກ <strong>".epub"</strong><br>
+              <small>Try <strong>Files → iCloud Drive → Downloads</strong> or Search 🔍 for ".epub"</small>
+            </div>
+          </div>
+
+          <!-- ANDROID -->
+          <div class="er-os-content" id="os-android">
+            <div class="er-sub-section">
+              <div class="er-sub-title">▼ ຂັ້ນຕອນທີ 1 — ຊອກຫາໄຟລ໌ EPUB / Find the EPUB file</div>
+              <div class="er-visual-steps">
+                <div class="er-vstep">
+                  <span class="er-vstep-icon">📁</span>
+                  <span class="er-vstep-text">
+                    ① ເປີດແອັບ <strong>Files / ຈັດການໄຟລ໌</strong><br>
+                    <small>① Open the <strong>Files</strong> or <strong>File Manager</strong> app</small>
+                  </span>
+                </div>
+                <div class="er-vstep-arrow">↓</div>
+                <div class="er-vstep">
+                  <span class="er-vstep-icon">📥</span>
+                  <span class="er-vstep-text">
+                    ② ເຂົ້າໂຟນເດີ <strong>Downloads</strong> → ຊອກໄຟລ໌ <strong>.epub</strong><br>
+                    <small>② Open <strong>Downloads</strong> folder → find the <strong>.epub</strong> file</small>
+                  </span>
+                </div>
+                <div class="er-vstep-arrow">↓</div>
+                <div class="er-vstep">
+                  <span class="er-vstep-icon">👆</span>
+                  <span class="er-vstep-text">
+                    ③ ກົດໄຟລ໌ <strong>.epub</strong><br>
+                    <small>③ Tap the <strong>.epub</strong> file</small>
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div class="er-sub-section" style="margin-top:12px">
+              <div class="er-sub-title">▼ ຂັ້ນຕອນທີ 2 — ເປີດໃນ EasyReader / Open in EasyReader</div>
+              <div class="er-visual-steps">
+                <div class="er-vstep">
+                  <span class="er-vstep-icon">📋</span>
+                  <span class="er-vstep-text">
+                    ④ ໜ້າຈໍ "ເປີດດ້ວຍ" ປາກົດ → ເລືອກ <strong>EasyReader</strong><br>
+                    <small>④ "Open with" screen appears → select <strong>EasyReader</strong></small>
+                  </span>
+                </div>
+                <div class="er-vstep-arrow">↓</div>
+                <div class="er-vstep er-vstep-highlight">
+                  <span class="er-vstep-icon">✅</span>
+                  <span class="er-vstep-text">
+                    ⑤ EasyReader ເປີດ → ກົດ <strong>"My Books"</strong> → ອ່ານໄດ້ເລີຍ!<br>
+                    <small>⑤ EasyReader opens → tap <strong>"My Books"</strong> → start reading!</small>
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div class="er-tip" style="margin-top:12px;font-size:0.78em">
+              💡 <strong>ຖ້າ EasyReader ບໍ່ປາກົດໃນລາຍການ:</strong><br>
+              ເປີດ EasyReader ກ່ອນ 1 ຄັ້ງ → ກັບມາລອງໃໝ່<br>
+              <small>If EasyReader doesn't appear, open EasyReader once first → then try again</small>
             </div>
           </div>
 
           <!-- WINDOWS -->
           <div class="er-os-content" id="os-windows">
-            <div class="er-visual-steps">
-              <div class="er-vstep">
-                <span class="er-vstep-icon">💻</span>
-                <span class="er-vstep-text">ເປີດ EasyReader ໃນ PC<br><small>Open EasyReader on your PC</small></span>
-              </div>
-              <div class="er-vstep-arrow">↓</div>
-              <div class="er-vstep">
-                <span class="er-vstep-icon">➕</span>
-                <span class="er-vstep-text">ກົດ <strong>"Add Book"</strong><br><small>Click "Add Book"</small></span>
-              </div>
-              <div class="er-vstep-arrow">↓</div>
-              <div class="er-vstep">
-                <span class="er-vstep-icon">📂</span>
-                <span class="er-vstep-text">ເລືອກໄຟລ໌ <strong>.epub</strong> ຈາກໂຟນເດີ Downloads<br><small>Select the .epub file from Downloads folder</small></span>
-              </div>
-              <div class="er-vstep-arrow">↓</div>
-              <div class="er-vstep er-vstep-highlight">
-                <span class="er-vstep-icon">✅</span>
-                <span class="er-vstep-text">ໜັງສືຢູ່ໃນ My Library! / Book appears in My Library!</span>
+            <div class="er-sub-section">
+              <div class="er-sub-title">▼ ຂັ້ນຕອນທີ 1 — ຊອກຫາໄຟລ໌ EPUB / Find the EPUB file</div>
+              <div class="er-visual-steps">
+                <div class="er-vstep">
+                  <span class="er-vstep-icon">💻</span>
+                  <span class="er-vstep-text">
+                    ① ເປີດ <strong>File Explorer</strong> → ເຂົ້າໂຟນເດີ <strong>Downloads</strong><br>
+                    <small>① Open <strong>File Explorer</strong> → go to <strong>Downloads</strong> folder</small>
+                  </span>
+                </div>
+                <div class="er-vstep-arrow">↓</div>
+                <div class="er-vstep">
+                  <span class="er-vstep-icon">🔍</span>
+                  <span class="er-vstep-text">
+                    ② ຊອກຫາໄຟລ໌ <strong>.epub</strong><br>
+                    <small>② Find the <strong>.epub</strong> file</small>
+                  </span>
+                </div>
               </div>
             </div>
+
+            <div class="er-sub-section" style="margin-top:12px">
+              <div class="er-sub-title">▼ ຂັ້ນຕອນທີ 2 — ເພີ່ມໃສ່ EasyReader / Add to EasyReader</div>
+              <div class="er-visual-steps">
+                <div class="er-vstep">
+                  <span class="er-vstep-icon">📖</span>
+                  <span class="er-vstep-text">
+                    ③ ເປີດ <strong>EasyReader</strong> → ກົດ <strong>"Add Book"</strong> → ເລືອກໄຟລ໌ .epub<br>
+                    <small>③ Open <strong>EasyReader</strong> → click <strong>"Add Book"</strong> → select the .epub file</small>
+                  </span>
+                </div>
+                <div class="er-vstep-arrow">↓</div>
+                <div class="er-vstep er-vstep-highlight">
+                  <span class="er-vstep-icon">✅</span>
+                  <span class="er-vstep-text">
+                    ④ ໜັງສືຢູ່ໃນ <strong>My Books</strong> → ອ່ານໄດ້ເລີຍ!<br>
+                    <small>④ Book appears in <strong>My Books</strong> → start reading!</small>
+                  </span>
+                </div>
+              </div>
+            </div>
+
             <div class="er-tip" style="margin-top:12px;font-size:0.78em">
-              💡 ລາກໄຟລ໌ເຂົ້າໂດຍກົງໄດ້ເລີຍ! / You can also drag and drop the file directly into EasyReader!
+              💡 ລາກໄຟລ໌ <strong>.epub</strong> ຈາກ File Explorer ຍ້າຍໃສ່ EasyReader ໂດຍກົງ!<br>
+              <small>You can also drag the .epub file from File Explorer directly into EasyReader!</small>
             </div>
           </div>
         </div>
