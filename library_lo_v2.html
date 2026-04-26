@@ -1566,82 +1566,46 @@ function driveUrlToThumb(url, size) {
 }
 
 function buildOrgs(config) {
-  // Collect org entries from config, sorted by order
-  var orgs = [];
-  var i = 1;
-  while (config && config['org_' + i + '_name']) {
-    orgs.push({
-      name:     config['org_' + i + '_name'],
-      logo_url: driveUrlToThumb(config['org_' + i + '_logo_url'] || ''),
-      order:    parseInt(config['org_' + i + '_order'] || i),
-      link:     config['org_' + i + '_link'] || '',
-    });
-    i++;
-  }
-  // フォールバック：Configにorg情報がない場合はSITE_CONFIGの値を使用
-  if (orgs.length === 0 && SITE_CONFIG.orgs_fallback) {
-    orgs = SITE_CONFIG.orgs_fallback.slice();
-  }
-  orgs.sort(function(a, b) { return a.order - b.order; });
-
-  // Org links (hardcoded fallbacks for name matching)
-  var orgLinks = {
-    'National Library of Laos': 'https://www.facebook.com/profile.php?id=100069231069181',
-    "Children's Home Foundation": 'https://www.facebook.com/childrenshomefoundation',
-    'EFA Japan': 'https://www.efa-japan.org/',
-  };
-
-  // Build footer orgs
-  var footerHtml = '';
-  orgs.forEach(function(org) {
-    var thumb = driveUrlToThumb(org.logo_url);
-    // nameに英語団体名が含まれる場合も照合
-    var link = org.link || '';
-    if (!link) {
-      Object.keys(orgLinks).forEach(function(k) {
-        if (org.name.indexOf(k) !== -1) link = orgLinks[k];
-      });
+  var orgs = [
+    {
+      name: "ຫໍສະໝຸດແຫ່ງຊາດລາວ<br>(National Library of Laos)",
+      logo: "data:image/jpeg;base64,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",
+      link: "https://www.facebook.com/profile.php?id=100069231069181"
+    },
+    {
+      name: "ມູນນິທິບ້ານເດັກ<br>(Children's Home Foundation)",
+      logo: "data:image/jpeg;base64,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",
+      link: "https://www.facebook.com/childrenshomefoundation"
+    },
+    {
+      name: "EFA Japan",
+      logo: "data:image/jpeg;base64,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",
+      link: "https://www.efa-japan.org/"
     }
-    if (!link) link = '#';
-    var imgHtml = thumb
-      ? '<img src="' + thumb + '" alt="' + esc(org.name) + '" ' +
-        'style="width:64px;height:64px;object-fit:contain" ' +
-        'onerror="this.style.display='none'">'
-      : '<span style="font-size:0.7em;color:#999">' + esc(org.name) + '</span>';
-    footerHtml +=
-      '<div class="footer-org">' +
-      '<a href="' + link + '" target="_blank">' +
-      '<div class="footer-org-logo-wrap">' + imgHtml + '</div>' +
-      '<span>' + esc(org.name) + '</span>' +
-      '</a></div>';
-  });
-  var fe = document.getElementById('footer-orgs');
-  if (fe) fe.innerHTML = footerHtml;
+  ];
 
-  // Build about orgs
+  // Config上書き（将来の拡張用）
+  var i = 1;
+  while (config && config['org_' + i + '_name']) i++;
+
+  var footerHtml = '';
   var aboutHtml = '';
   orgs.forEach(function(org) {
-    var thumb = driveUrlToThumb(org.logo_url);
-    // nameに英語団体名が含まれる場合も照合
-    var link = org.link || '';
-    if (!link) {
-      Object.keys(orgLinks).forEach(function(k) {
-        if (org.name.indexOf(k) !== -1) link = orgLinks[k];
-      });
-    }
-    if (!link) link = '#';
-    var imgHtml = thumb
-      ? '<img src="' + thumb + '" alt="' + esc(org.name) + '" ' +
-        'style="width:52px;height:52px;object-fit:contain;background:white;border-radius:6px;padding:2px;flex-shrink:0" ' +
-        'onerror="this.style.display='none'">'
-      : '';
+    footerHtml +=
+      '<div class="footer-org">' +
+      '<a href="' + org.link + '" target="_blank">' +
+      '<div class="footer-org-logo-wrap"><img src="' + org.logo + '" alt="' + org.name.replace(/<[^>]+>/g,'') + '"></div>' +
+      '<span>' + org.name + '</span>' +
+      '</a></div>';
     aboutHtml +=
-      '<a href="' + link + '" target="_blank" class="about-org-tag" ' +
-      'style="text-decoration:none;display:flex;align-items:center;gap:10px">' +
-      imgHtml +
-      '<span>' + esc(org.name) + '</span>' +
+      '<a href="' + org.link + '" target="_blank" class="about-org-tag" style="text-decoration:none;display:flex;align-items:center;gap:10px">' +
+      '<img src="' + org.logo + '" alt="" style="width:52px;height:52px;object-fit:contain;background:white;border-radius:6px;padding:2px;flex-shrink:0">' +
+      '<span>' + org.name.replace(/<br>/g,' ') + '</span>' +
       '</a>';
   });
+
+  var fe = document.getElementById('footer-orgs');
+  if (fe) fe.innerHTML = footerHtml;
   var ae = document.getElementById('about-orgs');
   if (ae) ae.innerHTML = aboutHtml;
 }
