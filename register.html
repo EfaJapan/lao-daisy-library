@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="lo">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ລົງທະບຽນ / Register — ຫໍສະໝຸດ DAISY</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #004070 0%, #0065A4 60%, #0088cc 100%);
+      font-family: 'Phetsarath OT', 'Noto Sans Lao', 'Segoe UI', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* ── header ── */
+    .header {
+      width: 100%;
+      background: rgba(0,0,0,0.25);
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .header-back {
+      color: rgba(255,255,255,0.85);
+      text-decoration: none;
+      font-size: 0.9em;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.2s;
+    }
+    .header-back:hover { color: #fff; }
+    .header-title {
+      color: #fff;
+      font-size: 1em;
+      font-weight: 600;
+    }
+
+    /* ── main container ── */
+    .container {
+      width: 100%;
+      max-width: 720px;
+      padding: 24px 16px 40px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    /* ── info card ── */
+    .info-card {
+      background: rgba(255,255,255,0.13);
+      border: 1.5px solid rgba(255,255,255,0.3);
+      border-radius: 16px;
+      padding: 18px 22px;
+      width: 100%;
+      color: #fff;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+    .info-card .icon { font-size: 1.6em; flex-shrink: 0; margin-top: 2px; }
+    .info-card p { font-size: 0.92em; line-height: 1.7; }
+    .info-card strong { display: block; font-size: 1em; margin-bottom: 4px; }
+
+    /* ── post-submit overlay ── */
+    #redirect-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(135deg, #004070, #0065A4);
+      z-index: 999;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      text-align: center;
+      padding: 24px;
+    }
+    #redirect-overlay.show { display: flex; }
+    .overlay-icon { font-size: 4em; }
+    .overlay-title {
+      color: #fff;
+      font-size: 1.5em;
+      font-weight: 700;
+    }
+    .overlay-sub {
+      color: rgba(255,255,255,0.85);
+      font-size: 0.95em;
+      line-height: 1.8;
+    }
+    .overlay-progress {
+      width: 200px;
+      height: 6px;
+      background: rgba(255,255,255,0.25);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .overlay-bar {
+      height: 100%;
+      background: #F39800;
+      border-radius: 3px;
+      width: 0%;
+      transition: width 3s linear;
+    }
+    .overlay-skip {
+      margin-top: 8px;
+      background: rgba(255,255,255,0.18);
+      border: 1.5px solid rgba(255,255,255,0.35);
+      color: #fff;
+      border-radius: 10px;
+      padding: 10px 28px;
+      font-size: 0.95em;
+      cursor: pointer;
+      font-family: inherit;
+      transition: background 0.2s;
+    }
+    .overlay-skip:hover { background: rgba(255,255,255,0.28); }
+
+    /* ── form wrapper ── */
+    .form-wrapper {
+      width: 100%;
+      background: #fff;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+    }
+    #gform {
+      width: 100%;
+      border: none;
+      display: block;
+      /* height adjusted by JS */
+      min-height: 600px;
+      height: 820px;
+    }
+
+    @media (max-width: 600px) {
+      .info-card { padding: 14px 16px; }
+      #gform { height: 880px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- header -->
+  <div class="header">
+    <a class="header-back" href="lao_library_landing.html">← ກັບຄືນ / Back</a>
+    <span class="header-title">📚 ລົງທະບຽນ ຫໍສະໝຸດ DAISY / Register</span>
+  </div>
+
+  <!-- main container -->
+  <div class="container">
+
+    <!-- info card -->
+    <div class="info-card">
+      <span class="icon">💡</span>
+      <div>
+        <strong>ສົ່ງຟອມສຳເລັດ → ໜ້າຫໍສະໝຸດຈະເປີດອັດຕະໂນມັດ</strong>
+        <p>
+          ກະລຸນາໃສ່ອີເມລຂອງທ່ານ ແລ້ວກົດ「Submit」。<br>
+          ຫຼັງຈາກສົ່ງຟອມ, ຈະຍ້າຍໄປໜ້າຫໍສະໝຸດໂດຍອັດຕະໂນມັດ。<br>
+          <small>After submitting, you will be automatically taken to the library page.</small>
+        </p>
+      </div>
+    </div>
+
+    <!-- Google Form (embedded) -->
+    <div class="form-wrapper">
+      <iframe
+        id="gform"
+        src="https://docs.google.com/forms/d/e/1FAIpQLSdmR1HHqNKBmiyXbLoogOYwYavVJJya9Nm_k6hDZftvc9CIpQ/viewform?embedded=true"
+        frameborder="0"
+        marginheight="0"
+        marginwidth="0"
+        title="ລົງທະບຽນ / Registration Form"
+      >Loading...</iframe>
+    </div>
+
+  </div><!-- /container -->
+
+  <!-- post-submit redirect overlay -->
+  <div id="redirect-overlay">
+    <div class="overlay-icon">✅</div>
+    <div class="overlay-title">
+      ລົງທະບຽນສຳເລັດ！<br>
+      <small style="font-size:0.6em;font-weight:400">Registration complete!</small>
+    </div>
+    <div class="overlay-sub">
+      ກຳລັງຍ້າຍໄປໜ້າຫໍສະໝຸດ...<br>
+      <small>Moving to library page...</small>
+    </div>
+    <div class="overlay-progress">
+      <div class="overlay-bar" id="progress-bar"></div>
+    </div>
+    <button class="overlay-skip" onclick="goToLibrary()">
+      📚 ເຂົ້າຫໍສະໝຸດເລີຍ / Go to Library now
+    </button>
+  </div>
+
+  <script>
+  (function () {
+    var LIBRARY_URL = 'lao_library_landing.html';
+    var REDIRECT_DELAY = 3000; // ms
+    var iframe = document.getElementById('gform');
+    var overlay = document.getElementById('redirect-overlay');
+    var bar     = document.getElementById('progress-bar');
+    var loadCount = 0;
+    var redirectTimer = null;
+
+    // ── monitor iframe load events ──
+    // 1st load: form itself
+    // 2nd load: confirmation page after submit → start redirect
+    iframe.addEventListener('load', function () {
+      loadCount++;
+      if (loadCount >= 2) {
+        triggerRedirect();
+      }
+    });
+
+    function triggerRedirect() {
+      // show overlay
+      overlay.classList.add('show');
+
+      // start progress bar (CSS transition: 0→100% over 3s)
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () {
+          bar.style.width = '100%';
+        });
+      });
+
+      // redirect after 3s
+      redirectTimer = setTimeout(goToLibrary, REDIRECT_DELAY);
+    }
+
+    window.goToLibrary = function () {
+      if (redirectTimer) clearTimeout(redirectTimer);
+      window.location.href = LIBRARY_URL;
+    };
+  })();
+  </script>
+
+</body>
+</html>
