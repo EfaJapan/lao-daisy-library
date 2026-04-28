@@ -599,17 +599,57 @@
     inp.focus();
   };
 
+  var GAS_API = 'https://script.google.com/macros/s/AKfycbw50nsLHRRbtg0qUfppIgy_PRkYRLkV-7MGLDjJoUNVvBW-l7ol_5hb3-ELznt3yWBU8w/exec';
+  var CATALOG  = 'https://efajapan.github.io/lao-daisy-library/library_lo.html';
+
   window.openLibrary = function(){
     var email = inp.value.trim();
-    // メールを保存
-    if (email) {
-      try { localStorage.setItem(KEY, email); } catch(e){}
+    if (!email) {
+      showLandingError('ກະລຸນາໃສ່ອີເມລ / Please enter your email');
+      return;
     }
-    // カタログページを開く（メールをURLパラメータとして渡す）
-    var base = 'https://efajapan.github.io/lao-daisy-library/library_lo.html';
-    var url = email ? base + '?email=' + encodeURIComponent(email) : base;
-    window.open(url, '_blank');
+    // メールを保存
+    try { localStorage.setItem(KEY, email); } catch(e){}
+
+    // ── GAS API で認証 ──
+    var btn = document.getElementById('openLibBtn');
+    btn.disabled = true;
+    btn.textContent = '⏳ ກຳລັງກວດສອບ...';
+
+    fetch(GAS_API + '?action=auth&email=' + encodeURIComponent(email))
+      .then(function(r){ return r.json(); })
+      .then(function(data){
+        if (data.ok) {
+          // 登録済み → カタログへ直接（ログイン画面スキップ）
+          window.location.href = CATALOG + '?email=' + encodeURIComponent(email) + '&auth=1';
+        } else {
+          // 未登録 → エラー表示 + 登録ページへ誘導
+          showLandingError(
+            'ອີເມລນີ້ຍັງບໍ່ໄດ້ລົງທະບຽນ / Email not registered. ' +
+            '<a href="register.html" style="color:#F39800;font-weight:bold">→ ລົງທະບຽນ / Register</a>'
+          );
+          btn.disabled = false;
+          btn.textContent = '📚 ເຂົ້າຫໍສະໝຸດ / Open Library';
+        }
+      })
+      .catch(function(){
+        showLandingError('ການເຊື່ອມຕໍ່ລົ້ມເຫລວ / Connection failed. Please try again.');
+        btn.disabled = false;
+        btn.textContent = '📚 ເຂົ້າຫໍສະໝຸດ / Open Library';
+      });
   };
+
+  function showLandingError(msg) {
+    var el = document.getElementById('landing-login-error');
+    if (!el) {
+      el = document.createElement('div');
+      el.id = 'landing-login-error';
+      el.style.cssText = 'margin-top:10px;padding:10px 14px;background:rgba(220,50,50,0.18);border:1px solid rgba(255,100,100,0.4);border-radius:10px;color:#fff;font-size:0.88em;line-height:1.6;';
+      inp.closest('.email-login-box').appendChild(el);
+    }
+    el.innerHTML = msg;
+    el.style.display = 'block';
+  }
 })();
 </script>
 
