@@ -1651,9 +1651,16 @@ window.addEventListener('DOMContentLoaded', () => {
       try { if (v) localStorage.setItem('lib_user_email', v); } catch(e) {}
     });
 
-    // URLパラメータにメールがある場合（ランディングページからの遷移）→ 自動ログイン
-    if (urlEmail) {
-      setTimeout(function() { doLogin(); }, 300);
+    // URLパラメータにメールがある場合（ランディングページからの遷移）→ login-sectionを隠して自動ログイン
+    const urlAuth = urlParams.get('auth');
+    if (urlEmail && urlAuth === '1') {
+      // login-sectionを隠してローディング表示（チラ見え防止）
+      var ls = document.getElementById('login-section');
+      if (ls) {
+        ls.style.display = 'none';
+      }
+      // 少し待ってからAPI呼び出し（DOMと設定の初期化を待つ）
+      setTimeout(function() { doLogin(); }, 400);
     }
   }
 
