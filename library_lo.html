@@ -1650,6 +1650,11 @@ window.addEventListener('DOMContentLoaded', () => {
       const v = emailInp.value.trim();
       try { if (v) localStorage.setItem('lib_user_email', v); } catch(e) {}
     });
+
+    // URLパラメータにメールがある場合（ランディングページからの遷移）→ 自動ログイン
+    if (urlEmail) {
+      setTimeout(function() { doLogin(); }, 300);
+    }
   }
 
   // フォームURLを登録リンクに反映
