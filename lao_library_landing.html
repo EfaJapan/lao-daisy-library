@@ -6,24 +6,24 @@
 <title>ຫໍສະໝຸດ ມັນຕິມີເດຊີ ລາວ — Lao Multimedia DAISY Library</title>
 <style>
   :root {
-    --blue: #0065A4;
-    --dark: #004070;
-    --light: #E6F2FA;
-    --accent: #F39800;
-    --green: #2e7d32;
-    --text: #1a2a3a;
-    --sub: #5a6a7a;
+    --blue: #00B4D8;
+    --dark: #0077B6;
+    --light: #E0F7FF;
+    --accent: #FFB703;
+    --green: #2DC653;
+    --text: #1A3A4A;
+    --sub: #4A6A7A;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
     font-family: 'Phetsarath OT', 'Noto Sans Lao', 'Segoe UI', sans-serif;
-    background: #f0f6fc;
+    background: #FFFCF5;
     color: var(--text);
   }
 
   /* HERO */
   .hero {
-    background: linear-gradient(135deg, var(--dark) 0%, #0077bb 60%, #0099cc 100%);
+    background: linear-gradient(135deg, var(--dark) 0%, #0096C7 60%, #48CAE4 100%);
     min-height: 480px;
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -204,7 +204,7 @@
     padding: 60px 80px;
   }
   .reader-card {
-    background: linear-gradient(135deg, #1a4a8a, var(--blue));
+    background: linear-gradient(135deg, #0077B6, #00B4D8);
     border-radius: 20px;
     padding: 36px 40px;
     display: flex;
@@ -232,13 +232,13 @@
 
   /* NOTICE */
   .notice-section {
-    background: #fff8e1;
+    background: #FFFDE7;
     border-top: 4px solid var(--accent);
     padding: 28px 80px;
   }
   .notice-section p {
     font-size: 0.85em;
-    color: #7a5800;
+    color: #6B4A00;
     line-height: 1.7;
     text-align: center;
   }
@@ -286,7 +286,7 @@
 
   /* FOOTER */
   .footer {
-    background: #0a1a2a;
+    background: #023E8A;
     padding: 20px 80px;
     text-align: center;
   }
@@ -352,7 +352,7 @@
     font-size: 0.95em;
     font-family: inherit;
     background: rgba(255,255,255,0.95);
-    color: #1a2a3a;
+    color: #1A3A4A;
     outline: none;
     transition: box-shadow 0.2s;
   }
@@ -626,7 +626,7 @@
           // 未登録 → エラー表示 + 登録ページへ誘導
           showLandingError(
             'ອີເມລນີ້ຍັງບໍ່ໄດ້ລົງທະບຽນ / Email not registered. ' +
-            '<a href="register.html" style="color:#F39800;font-weight:bold">→ ລົງທະບຽນ / Register</a>'
+            '<a href="register.html" style="color:#FFB703;font-weight:bold">→ ລົງທະບຽນ / Register</a>'
           );
           btn.disabled = false;
           btn.textContent = '📚 ເຂົ້າຫໍສະໝຸດ / Open Library';
