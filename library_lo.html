@@ -838,7 +838,89 @@
   }
 
 
-
+/* ============================================================
+   代替アプリ案内（ガイドモーダル内・ラオ版）
+============================================================ */
+.er-alt-notice {
+  background: linear-gradient(135deg, #FFF8E8, #FFF0CC);
+  border: 2px solid #E8920A;
+  border-radius: 12px;
+  padding: 16px;
+  margin-top: 4px;
+}
+.er-alt-notice-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.er-alt-badge {
+  background: #E8920A;
+  color: white;
+  font-weight: 800;
+  font-size: 0.8em;
+  padding: 3px 8px;
+  border-radius: 6px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.er-alt-title {
+  font-size: 0.88em;
+  font-weight: 700;
+  color: #7a5c10;
+  line-height: 1.5;
+}
+.er-alt-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.er-alt-card {
+  background: white;
+  border-radius: 8px;
+  padding: 12px;
+}
+.er-alt-card-title {
+  font-size: 0.76em;
+  font-weight: 700;
+  color: var(--efa-blue);
+  margin-bottom: 6px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #e8e8e8;
+}
+.er-alt-app-name {
+  font-size: 0.85em;
+  font-weight: 700;
+  color: var(--efa-dark);
+  margin-bottom: 4px;
+}
+.er-alt-desc {
+  font-size: 0.75em;
+  color: var(--text-sub);
+  line-height: 1.6;
+  margin-bottom: 8px;
+}
+.er-alt-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 0.75em;
+  font-weight: 700;
+  color: white;
+  margin-right: 4px;
+  margin-bottom: 4px;
+  transition: opacity .2s;
+}
+.er-alt-btn:hover { opacity: .82; }
+.er-alt-btn.android  { background: #2a7a3b; }
+.er-alt-btn.win-blue { background: var(--efa-blue); }
+.er-alt-btn.win-ms   { background: #0078d4; }
+@media (max-width: 480px) {
+  .er-alt-grid { grid-template-columns: 1fr; }
+}
 </style>
 </head>
 <body>
