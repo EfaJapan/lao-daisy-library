@@ -1,20 +1,12 @@
 <!DOCTYPE html>
 <html lang="lo">
-<!DOCTYPE html>
-<html lang="lo">
 <head>
-  <head>
-  <link rel="icon" type="image/png" href="favicon.png">    ← ここに追加
-  <link rel="apple-touch-icon" href="favicon.png">         ← この行も追加
-  <meta charset="UTF-8">   ← 既存のコードはそのまま
   <link rel="icon" type="image/png" href="favicon.png">
   <link rel="apple-touch-icon" href="favicon.png">
   <meta charset="UTF-8">
-  ...
   <meta name="color-scheme" content="light">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ຫໍສະໝຸດ ມັນຕິມີເດຊີ ລາວ — Lao Multimedia DAISY Library</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ຫໍສະໝຸດ ມັນຕິມີເດຊີ ລາວ — Lao Multimedia DAISY Library</title>
 <style>
   :root {
     color-scheme: light;
@@ -396,9 +388,71 @@
     .email-login-row { flex-direction: column; }
     .email-login-input { width: 100%; }
   }
+  /* ===== HEADER ===== */
+  .site-header {
+    background: linear-gradient(135deg, #023E8A 0%, var(--blue) 100%);
+    color: white;
+    padding: 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+  }
+  .header-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .header-title h1 {
+    font-size: 1.15em;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+  .header-title p {
+    font-size: 0.78em;
+    opacity: 0.8;
+    margin-top: 2px;
+  }
+  .header-nav {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .btn-about {
+    background: rgba(255,255,255,0.15);
+    color: white;
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 20px;
+    padding: 5px 14px;
+    font-size: 0.82em;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .btn-about:hover { background: rgba(255,255,255,0.25); }
+  @media (max-width: 600px) {
+    .header-title h1 { font-size: 0.95em; }
+  }
 </style>
 </head>
 <body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="header-inner">
+    <div class="header-title">
+      <h1>📚 ຫໍສະໝຸດ ມັນຕິມີເດຊີ ລາວ</h1>
+      <p>Lao Multimedia DAISY Library</p>
+    </div>
+    <nav class="header-nav">
+      <a class="btn-about" href="#about">About Us</a>
+    </nav>
+  </div>
+</header>
 
 <!-- HERO -->
 <section class="hero">
@@ -442,7 +496,7 @@
 </section>
 
 <!-- ABOUT -->
-<section class="about">
+<section class="about" id="about">
   <div class="section-label">About</div>
   <div class="section-title">ຫໍສະໝຸດນີ້ແມ່ນຫຍັງ？<br><small style="font-size:0.65em;color:var(--sub)">What is this library?</small></div>
   <p style="color:var(--sub);font-size:0.9em;line-height:1.8;max-width:680px">
