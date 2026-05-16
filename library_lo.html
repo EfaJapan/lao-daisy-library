@@ -1637,7 +1637,7 @@ function bookCard(b) {
   const ageBadge = b.Age_Group ? `<span class="tag">👶 ${b.Age_Group}</span>` : '';
   const catBadge = b.Category ? `<span class="tag">${esc(b.Category)}</span>` : '';
   const dlBtn = b.Download_Link
-    ? `<a class="btn-download" href="${b.Download_Link}" target="_blank"
+    ? `<a class="btn-download" href="${b.Download_Link}" download
          onclick="logDl(${JSON.stringify(b).replace(/"/g,'&quot;')})"
        >⬇ Download E-pub</a>`
     : `<span class="btn-coming">⏳ ກຳລັງກຽມ / Coming Soon</span>`;
