@@ -942,6 +942,34 @@
 @media (max-width: 480px) {
   .er-alt-grid { grid-template-columns: 1fr; }
 }
+
+  /* ===== レイアウト調整（書籍カード・リーダー案内） ===== */
+  /* ② 書籍カード：同じ行のカードの高さをそろえ、ダウンロードボタンを下端にそろえる */
+  .book-card { display: flex; flex-direction: column; }
+  .card-body { display: flex; flex-direction: column; flex: 1; }
+  .card-badges { margin: auto 0 10px; padding-top: 10px; }  /* タグとボタンをまとめて下端にそろえる */
+  .btn-download, .btn-coming { margin-top: 0; }
+
+  /* ③ リーダー案内ウィンドウ */
+  .er-step-content { flex: 1; min-width: 0; }
+  .er-step-content h3 { font-size: 1em; margin-bottom: 8px; line-height: 1.5; }
+  .er-step-content p small { font-size: 0.92em; }
+  .er-dl-btns { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 10px; }
+  .er-dl-btn { display: flex; flex-direction: column; align-items: center; justify-content: center;
+               gap: 2px; min-height: 64px; padding: 10px 8px; text-align: center; border-radius: 10px; }
+  .er-dl-btn .er-dl-os { font-size: 0.95em; font-weight: 700; }
+  .er-dl-btn .er-dl-app { font-size: 0.88em; font-weight: 500; opacity: 0.92; }
+  .er-dl-btn.win { background: #4A6A7A; }
+  .er-dl-btn.win:hover { background: #33505E; }
+  .er-os-tabs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .er-os-tab { text-align: center; padding: 8px 6px; }
+  .er-vstep-text { flex: 1; min-width: 0; }
+  @media (max-width: 560px) {
+    .er-modal-body { padding: 18px 14px; }
+    .er-dl-btns { grid-template-columns: 1fr; }
+    .er-dl-btn { flex-direction: row; justify-content: space-between; min-height: 0; padding: 12px 14px; }
+    .er-step { gap: 10px; }
+  }
 </style>
 </head>
 <body>
@@ -1014,11 +1042,12 @@
         <div class="er-step-num">1</div>
         <div class="er-step-content">
           <h3>📲 ດາວໂຫຼດແອັບກ່ອນ! / Download the App First!</h3>
-          <p style="font-size:0.9em;margin-bottom:10px">ເລືອກແອັບຕາມອຸປະກອນຂອງທ່ານ — ທຸກແອັບໃຊ້ <strong style="color:#2DC653">ຟຣີ</strong>! / Choose the app for your device — all apps are <strong style="color:#2DC653">FREE</strong>!</p>
+          <p>ເລືອກແອັບຕາມອຸປະກອນຂອງທ່ານ — ທຸກແອັບໃຊ້ <strong style="color:#2DC653">ຟຣີ</strong>!<br>
+          <small>Choose the app for your device — all apps are <strong style="color:#2DC653">FREE</strong>!</small></p>
           <div class="er-dl-btns">
-            <a class="er-dl-btn android" href="https://play.google.com/store/apps/details?id=com.colibrio.reader" target="_blank" rel="noopener noreferrer">🤖 Android — Colibrio Reader</a>
-            <a class="er-dl-btn ios" href="https://apps.apple.com/us/app/dolphin-easyreader/id1161662515" target="_blank">🍎 iPhone / iPad — EasyReader</a>
-            <a class="er-dl-btn" href="https://apps.microsoft.com/detail/9nfzp1g7m2sc" target="_blank" rel="noopener noreferrer" style="background:#4A6A7A">💻 Windows PC — Thorium Reader</a>
+            <a class="er-dl-btn android" href="https://play.google.com/store/apps/details?id=com.colibrio.reader" target="_blank" rel="noopener noreferrer"><span class="er-dl-os">🤖 Android</span><span class="er-dl-app">Colibrio Reader</span></a>
+            <a class="er-dl-btn ios" href="https://apps.apple.com/us/app/dolphin-easyreader/id1161662515" target="_blank" rel="noopener noreferrer"><span class="er-dl-os">🍎 iPhone / iPad</span><span class="er-dl-app">EasyReader</span></a>
+            <a class="er-dl-btn win" href="https://apps.microsoft.com/detail/9nfzp1g7m2sc" target="_blank" rel="noopener noreferrer"><span class="er-dl-os">💻 Windows PC</span><span class="er-dl-app">Thorium Reader</span></a>
           </div>
         </div>
       </div>
@@ -1058,7 +1087,7 @@
           <div class="er-os-tabs">
             <button class="er-os-tab active" onclick="switchOS('ios', this)">🍎 iPhone/iPad</button>
             <button class="er-os-tab" onclick="switchOS('android', this)">🤖 Android</button>
-            <button class="er-os-tab" onclick="switchOS('windows', this)">💻 PC</button>
+            <button class="er-os-tab" onclick="switchOS('windows', this)">💻 Windows</button>
           </div>
 
           <!-- iOS (first / most complex) -->
@@ -1331,16 +1360,14 @@
       </select>
       <select id="filter-cat" onchange="filterBooks()">
         <option value="">Category</option>
-        <option>Stories & Fiction</option>
-        <option>Folktales & Legends</option>
-        <option>Nature & Animals</option>
-        <option>Family & Community</option>
-        <option>Values & Character</option>
-        <option>Language & Literacy</option>
-        <option>Numbers & Concepts</option>
-        <option>Culture & Tradition</option>
-        <option>Health & Safety</option>
-        <option>Poetry & Songs</option>
+        <option value="Stories & Fiction">Stories & Fiction</option>
+        <option value="Folktales & Legends">Folktales & Legends</option>
+        <option value="Nature & Animals">Nature & Animals</option>
+        <option value="Family & Daily Life">Family & Daily Life</option>
+        <option value="Education & Learning">Education & Learning</option>
+        <option value="Health & Body">Health & Body</option>
+        <option value="Culture & Tradition">Culture & Tradition</option>
+        <option value="Others">Others</option>
       </select>
     </div>
 
@@ -1565,6 +1592,7 @@ function renderBooks() {
   const allGrid = document.getElementById('all-books-grid');
   const newWrap = document.getElementById('new-arrivals-wrap');
 
+  syncCategoryOptions();
   const newBooks = allBooks.filter(b => b.is_new);
   const search = document.getElementById('search-input').value.toLowerCase();
   const age = document.getElementById('filter-age').value;
@@ -1575,8 +1603,9 @@ function renderBooks() {
       (b.Title||'').toLowerCase().includes(search) ||
       (b.Author||'').toLowerCase().includes(search) ||
       (b.Title_EN||'').toLowerCase().includes(search);
-    const matchAge = !age || b.Age_Group === age;
-    const matchCat = !cat || b.Category === cat;
+    const matchAge = !age || String(b.Age_Group||'').trim() === age;
+    // 前後の空白・大文字小文字の違いを無視して比較（シートの入力ゆれ対策）
+    const matchCat = !cat || String(b.Category||'').trim().toLowerCase() === cat.trim().toLowerCase();
     return matchSearch && matchAge && matchCat;
   });
 
@@ -1593,6 +1622,21 @@ function renderBooks() {
 }
 
 function filterBooks() { renderBooks(); }
+
+// Booksシートに、固定の一覧にないカテゴリが入っていた場合は選択肢に追加する
+function syncCategoryOptions() {
+  const sel = document.getElementById('filter-cat');
+  if (!sel || !Array.isArray(allBooks)) return;
+  const have = new Set(Array.from(sel.options).map(o => o.value.trim().toLowerCase()));
+  allBooks.forEach(b => {
+    const c = String(b.Category || '').trim();
+    if (c && !have.has(c.toLowerCase())) {
+      const o = document.createElement('option');
+      o.value = c; o.textContent = c;
+      sel.appendChild(o); have.add(c.toLowerCase());
+    }
+  });
+}
 
 function bookCard(b) {
   const id = String(b.ID || '').padStart(3, '0');
