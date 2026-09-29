@@ -1507,6 +1507,27 @@ function clearSession() {
 // ================================================================
 // LOGIN
 // ================================================================
+// 通信の一時的な失敗（GASの応答遅れ・一時エラー）に備え、最大3回まで自動で問い合わせ直す。
+// 「未登録」など正常な返事が来た場合はやり直さない。1回あたり25秒で打ち切る。
+async function fetchJsonWithRetry(url, tries = 3) {
+  let lastErr;
+  for (let i = 1; i <= tries; i++) {
+    const ctrl = (typeof AbortController !== 'undefined') ? new AbortController() : null;
+    const timer = ctrl ? setTimeout(() => ctrl.abort(), 25000) : null;
+    try {
+      const res = await fetch(url, ctrl ? { signal: ctrl.signal } : undefined);
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      return await res.json();
+    } catch (e) {
+      lastErr = e;
+      if (i < tries) await new Promise(r => setTimeout(r, 1500 * i));
+    } finally {
+      if (timer) clearTimeout(timer);
+    }
+  }
+  throw lastErr;
+}
+
 async function doLogin() {
   const email = document.getElementById('email-input').value.trim();
   const errEl = document.getElementById('login-error');
@@ -1519,8 +1540,7 @@ async function doLogin() {
 
   try {
     const url = `${SITE_CONFIG.sheets_api_url}?action=auth&email=${encodeURIComponent(email)}`;
-    const res = await fetch(url);
-    const data = await res.json();
+    const data = await fetchJsonWithRetry(url);
 
     if (data.ok) {
       currentUser = { email, name: data.name };
