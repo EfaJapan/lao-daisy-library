@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="lo">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>ຫ້ອງສະໝຸດ ມັນຕິມີເດຍເດຊີ ລາວ | Lao Multimedia DAISY Library</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="favicon.png">
+<link rel="preconnect" href="https://script.google.com">
+<link rel="preload" as="image" href="hero_lo.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Lao+Looped:wght@400;700&display=swap">
+<style>
+/* ================================================================
+   Lao OurDAISY Library — shared kid-friendly theme (2026-11)
+   ================================================================ */
+:root {
+  color-scheme: light;
+  --sky: #2EA8E6;
+  --sky-dark: #1272B0;
+  --sky-soft: #E3F4FD;
+  --sun: #FFC83D;
+  --sun-dark: #E9A400;
+  --sun-soft: #FFF4D2;
+  --grass: #43B864;
+  --grass-dark: #2A9148;
+  --grass-soft: #E4F7E8;
+  --coral: #FF7B6B;
+  --coral-soft: #FFE9E5;
+  --grape: #8B78EE;
+  --grape-soft: #EEEAFD;
+  --ink: #23384B;
+  --ink-sub: #5A6F82;
+  --paper: #FFF9EC;
+  --card: #FFFFFF;
+  --line: #EADFC8;
+  --r-lg: 26px;
+  --r-md: 18px;
+  --r-sm: 12px;
+  --shadow: 0 6px 0 rgba(35,56,75,0.06), 0 10px 26px rgba(35,56,75,0.08);
+  --font-lo: 'Phetsarath OT', 'Noto Sans Lao Looped', 'Noto Sans Lao', 'Segoe UI', sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  font-family: var(--font-lo);
+  font-size: 17px;
+  line-height: 1.75;
+  color: var(--ink);
+  background-color: var(--paper);
+  background-image:
+    radial-gradient(circle at 12px 12px, rgba(255,200,61,0.20) 2.5px, transparent 3px),
+    radial-gradient(circle at 36px 36px, rgba(46,168,230,0.14) 2.5px, transparent 3px);
+  background-size: 48px 48px;
+  min-height: 100vh;
+}
+a { color: var(--sky-dark); }
+img { max-width: 100%; }
+.en { display: block; font-family: 'Segoe UI', system-ui, sans-serif; font-size: 0.78em; color: var(--ink-sub); line-height: 1.5; font-weight: 400; }
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 16px; }
+
+/* ----- header ----- */
+.site-header {
+  position: sticky; top: 0; z-index: 100;
+  background: #fff;
+  box-shadow: 0 3px 14px rgba(35,56,75,0.08);
+}
+.site-header::after {
+  content: ""; display: block; height: 6px;
+  background: linear-gradient(90deg, var(--coral) 0 20%, var(--sun) 20% 40%, var(--grass) 40% 60%, var(--sky) 60% 80%, var(--grape) 80% 100%);
+}
+.header-inner { max-width: 1120px; margin: 0 auto; padding: 8px 16px; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); min-width: 0; }
+.brand-mark { flex: 0 0 auto; width: 44px; height: 44px; border-radius: 50%; background: var(--sun); display: grid; place-items: center; font-size: 24px; box-shadow: inset 0 -3px 0 rgba(0,0,0,0.08); }
+.brand-text { min-width: 0; }
+.brand-text strong { display: block; font-size: 1.02em; line-height: 1.35; color: var(--sky-dark); }
+.brand-text span { display: block; font-family: 'Segoe UI', system-ui, sans-serif; font-size: 0.72em; color: var(--ink-sub); line-height: 1.3; }
+.header-nav { display: flex; align-items: center; gap: 8px; flex: 0 0 auto; }
+.pill-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  border: 2px solid var(--sky); color: var(--sky-dark); background: #fff;
+  border-radius: 999px; padding: 4px 14px; font: inherit; font-size: 0.82em; font-weight: 700;
+  text-decoration: none; cursor: pointer; white-space: nowrap;
+}
+.pill-btn:hover { background: var(--sky-soft); }
+.user-badge { background: var(--sun-soft); border: 2px solid var(--sun); color: var(--ink); border-radius: 999px; padding: 4px 12px; font-size: 0.8em; font-weight: 700; max-width: 180px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* ----- buttons ----- */
+.btn-big {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  border: none; border-radius: var(--r-md); cursor: pointer;
+  font: inherit; font-weight: 700; font-size: 1.08em; line-height: 1.4;
+  padding: 14px 22px; min-height: 56px; text-decoration: none;
+  transition: transform .08s, box-shadow .08s;
+}
+.btn-big:active { transform: translateY(3px); }
+.btn-sun { background: var(--sun); color: var(--ink); box-shadow: 0 5px 0 var(--sun-dark); }
+.btn-sun:active { box-shadow: 0 2px 0 var(--sun-dark); }
+.btn-grass { background: var(--grass); color: #fff; box-shadow: 0 5px 0 var(--grass-dark); }
+.btn-grass:active { box-shadow: 0 2px 0 var(--grass-dark); }
+.btn-sky { background: var(--sky); color: #fff; box-shadow: 0 5px 0 var(--sky-dark); }
+.btn-sky:active { box-shadow: 0 2px 0 var(--sky-dark); }
+.btn-big[disabled] { opacity: .65; cursor: wait; }
+.btn-big .en { color: inherit; opacity: .85; font-size: .72em; }
+
+/* ----- section titles ----- */
+.sec-title { display: flex; align-items: center; gap: 12px; margin: 0 0 16px; }
+.sec-title .bubble { flex: 0 0 auto; width: 48px; height: 48px; border-radius: 16px; display: grid; place-items: center; font-size: 26px; }
+.sec-title h2 { font-size: 1.35em; line-height: 1.35; color: var(--ink); }
+.sec-title h2 .en { font-size: .58em; }
+.bg-sun { background: var(--sun-soft); } .bg-sky { background: var(--sky-soft); } .bg-grass { background: var(--grass-soft); }
+.bg-coral { background: var(--coral-soft); } .bg-grape { background: var(--grape-soft); }
+
+/* ----- illustration frame (main illustration is unchanged) ----- */
+.illust {
+  border-radius: var(--r-lg); overflow: hidden; background: #fff;
+  border: 6px solid #fff; box-shadow: var(--shadow);
+  aspect-ratio: 1200 / 686;
+}
+.illust img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+/* ----- notice ----- */
+.notice {
+  display: flex; gap: 10px; align-items: flex-start;
+  background: #fff; border: 2px dashed var(--line); border-radius: var(--r-md);
+  padding: 12px 16px; font-size: .86em; color: var(--ink-sub);
+}
+.notice b { color: var(--ink); }
+
+/* ----- app cards (reader apps) ----- */
+.app-cards { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; }
+.app-card {
+  display: flex; align-items: center; gap: 14px; text-decoration: none; color: var(--ink);
+  background: #fff; border-radius: var(--r-md); padding: 14px 16px; border: 3px solid transparent;
+  box-shadow: var(--shadow); min-width: 0;
+}
+.app-card:hover { border-color: var(--sky); }
+.app-card .dev { flex: 0 0 auto; width: 54px; height: 54px; border-radius: 16px; display: grid; place-items: center; font-size: 28px; }
+.app-card .txt { flex: 1 1 auto; min-width: 0; }
+.app-card .txt small { display: block; font-size: .78em; color: var(--ink-sub); font-family: 'Segoe UI', system-ui, sans-serif; }
+.app-card .txt strong { display: block; font-size: 1.05em; line-height: 1.35; }
+.app-card .go { flex: 0 1 auto; max-width: 48%; background: var(--grass); color: #fff; border-radius: 999px; padding: 6px 12px; font-weight: 700; font-size: .8em; text-align: center; line-height: 1.3; }
+.app-card.android .dev { background: var(--grass-soft); }
+.app-card.ios .dev { background: var(--sky-soft); }
+.app-card.win .dev { background: var(--grape-soft); }
+
+/* ----- orgs & footer ----- */
+.orgs-group { margin-bottom: 18px; }
+.orgs-label { font-weight: 700; font-size: .92em; margin-bottom: 10px; color: var(--ink); }
+.orgs-label .en { display: inline; margin-left: 6px; }
+.orgs-row { display: flex; flex-wrap: wrap; gap: 10px; }
+.org-chip { display: flex; align-items: center; gap: 10px; background: #fff; border-radius: var(--r-sm); padding: 8px 12px; text-decoration: none; color: var(--ink); font-size: .8em; line-height: 1.4; box-shadow: 0 2px 8px rgba(35,56,75,.06); }
+.org-chip img { width: 44px; height: 44px; object-fit: contain; border-radius: 8px; background: #fff; flex: 0 0 auto; }
+.site-footer { margin-top: 40px; background: #fff; border-top: 6px solid var(--sun); padding: 28px 0 22px; }
+.footer-copy { font-size: .78em; color: var(--ink-sub); margin-top: 14px; font-family: 'Segoe UI', system-ui, sans-serif; }
+
+/* ----- focus for keyboard users ----- */
+:focus-visible { outline: 3px solid var(--grape); outline-offset: 2px; }
+
+@media (max-width: 520px) {
+  .brand-mark { width: 38px; height: 38px; font-size: 20px; }
+  .brand-text strong { font-size: .9em; }
+  .brand-text span { display: none; }
+  .header-nav .pill-btn .en { display: none !important; }
+  .header-nav .pill-btn { padding: 4px 10px; }
+  .user-badge { max-width: 92px; padding: 4px 8px; }
+}
+@media (min-width: 700px) {
+  .app-cards { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .app-card .go { max-width: none; }
+  .app-card { flex-direction: column; text-align: center; padding: 20px 14px; }
+  .app-card .go { margin-top: 4px; }
+}
+@media (min-width: 1024px) {
+  body { font-size: 18px; }
+  .brand-mark { width: 50px; height: 50px; font-size: 28px; }
+  .brand-text strong { font-size: 1.1em; }
+}
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }
+
+/* ===== landing page ===== */
+.hero { padding: 22px 0 8px; }
+.hero-grid { display: grid; grid-template-columns: 1fr; gap: 20px; align-items: center; }
+.hello {
+  display: inline-block; position: relative; background: #fff; border: 3px solid var(--sun);
+  border-radius: 20px; padding: 4px 16px; font-weight: 700; font-size: 1.05em; margin-bottom: 10px;
+}
+.hello::after { content: ""; position: absolute; left: 26px; bottom: -11px; border: 8px solid transparent; border-top-color: var(--sun); border-bottom: 0; }
+.hero h1 { font-size: 1.75em; line-height: 1.4; color: var(--sky-dark); }
+.hero h1 .en { font-size: .5em; margin-top: 2px; }
+.hero .lead { margin: 10px 0 0; font-size: 1em; }
+.hero .lead .en { margin-top: 2px; }
+.features { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0 0; padding: 0; list-style: none; }
+.features li { background: #fff; border-radius: 999px; padding: 4px 12px; font-size: .86em; font-weight: 700; box-shadow: 0 2px 8px rgba(35,56,75,.06); }
+
+.login-box { background: #fff; border-radius: var(--r-lg); box-shadow: var(--shadow); padding: 20px 18px; margin-top: 18px; border: 3px solid var(--sky-soft); }
+.login-box label { display: block; font-weight: 700; font-size: 1em; margin-bottom: 8px; }
+.login-box label .en { display: inline; margin-left: 4px; }
+.login-box input {
+  width: 100%; font: inherit; font-size: 1.05em; padding: 13px 16px; min-height: 54px;
+  border: 3px solid var(--sky); border-radius: var(--r-md); background: #fff; color: var(--ink);
+}
+.login-box input:focus { outline: none; border-color: var(--grape); box-shadow: 0 0 0 4px var(--grape-soft); }
+.login-box .btn-big { width: 100%; margin-top: 14px; flex-direction: column; gap: 0; }
+.email-hint { display: none; align-items: center; gap: 8px; flex-wrap: wrap; margin-top: 10px; font-size: .82em; color: var(--ink-sub); }
+.email-clear-btn { border: 2px solid var(--line); background: #fff; border-radius: 999px; padding: 2px 10px; font: inherit; font-size: .9em; cursor: pointer; color: var(--ink-sub); }
+.login-error { display: none; margin-top: 12px; padding: 10px 14px; background: var(--coral-soft); border: 2px solid var(--coral); border-radius: var(--r-sm); font-size: .9em; line-height: 1.6; }
+.login-error a { font-weight: 700; }
+.register-row { margin-top: 14px; text-align: center; font-size: .92em; }
+.register-row a { font-weight: 700; }
+
+.block { padding: 30px 0 4px; }
+.steps { display: grid; grid-template-columns: 1fr; gap: 12px; list-style: none; counter-reset: s; }
+.steps li { background: #fff; border-radius: var(--r-md); padding: 14px 16px; display: flex; gap: 14px; align-items: center; box-shadow: var(--shadow); }
+.steps .num { flex: 0 0 auto; width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center; font-weight: 800; font-size: 1.25em; color: #fff; font-family: 'Segoe UI', system-ui, sans-serif; }
+.steps li:nth-child(1) .num { background: var(--coral); }
+.steps li:nth-child(2) .num { background: var(--sun-dark); }
+.steps li:nth-child(3) .num { background: var(--grass); }
+.steps li:nth-child(4) .num { background: var(--sky); }
+.steps .ico { font-size: 1.6em; flex: 0 0 auto; }
+.steps strong { display: block; font-size: 1.02em; line-height: 1.4; }
+
+.info-cards { display: grid; grid-template-columns: 1fr; gap: 12px; }
+.info-card { background: #fff; border-radius: var(--r-md); padding: 16px; box-shadow: var(--shadow); }
+.info-card .ico { font-size: 1.8em; }
+.info-card h3 { font-size: 1.05em; margin: 4px 0 4px; }
+.info-card p { font-size: .92em; }
+.small-print { font-size: .8em; color: var(--ink-sub); margin-top: 12px; }
+
+@media (min-width: 760px) {
+  .hero { padding-top: 34px; }
+  .hero-grid { grid-template-columns: 1fr 1.05fr; gap: 34px; }
+  .hero-text { order: 1; } .hero-art { order: 2; }
+  .hero h1 { font-size: 2.1em; }
+  .steps { grid-template-columns: repeat(4, 1fr); }
+  .steps li { flex-direction: column; text-align: center; }
+  .info-cards { grid-template-columns: repeat(3, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="#top" aria-label="Lao Multimedia DAISY Library">
+      <span class="brand-mark" aria-hidden="true">📚</span>
+      <span class="brand-text"><strong>ຫ້ອງສະໝຸດ ມັນຕິມີເດຍເດຊີ ລາວ</strong><span>Lao Multimedia DAISY Library</span></span>
+    </a>
+    <nav class="header-nav">
+      <a class="pill-btn" href="#about">ກ່ຽວກັບ <span class="en" style="display:inline;margin:0">About</span></a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-art">
+      <div class="illust"><img src="hero_lo.jpg" width="1200" height="686" alt="ເດັກນ້ອຍກຳລັງອ່ານປຶ້ມ / Children reading books" fetchpriority="high"></div>
+    </div>
+    <div class="hero-text">
+      <span class="hello">ສະບາຍດີ! 👋</span>
+      <h1>ມາອ່ານປຶ້ມນຳກັນເດີ້!<span class="en">Let’s read books together!</span></h1>
+      <p class="lead">ປຶ້ມທຸກຫົວ ມີສຽງອ່ານໃຫ້ຟັງ. ຕົວໜັງສືຈະມີສີຂຶ້ນ ຕາມສຽງ.<span class="en">Every book reads aloud to you, and the words light up as you listen.</span></p>
+      <ul class="features">
+        <li>🎧 ມີສຽງອ່ານ</li>
+        <li>🌈 ຕົວໜັງສືມີສີ</li>
+        <li>🆓 ຟຣີ</li>
+      </ul>
+
+      <div class="login-box">
+        <label for="userEmail">📧 ອີເມລ ຂອງເຈົ້າ<span class="en">Your email</span></label>
+        <input type="email" id="userEmail" placeholder="your@email.com" autocomplete="email" inputmode="email">
+        <button class="btn-big btn-sun" id="openLibBtn" onclick="openLibrary()">
+          <span id="openLibLabel">📚 ເຂົ້າໄປອ່ານປຶ້ມ</span><span class="en">Open the library</span>
+        </button>
+        <div id="email-hint" class="email-hint">
+          <span id="email-hint-text"></span>
+          <button type="button" onclick="clearEmail()" class="email-clear-btn">✕ ລຶບ / Clear</button>
+        </div>
+        <div id="landing-login-error" class="login-error" role="alert"></div>
+        <div class="register-row">
+          ຍັງບໍ່ໄດ້ລົງທະບຽນບໍ? / Not registered yet?<br>
+          <a href="register_beta.html">✏️ ລົງທະບຽນ ຢູ່ນີ້ / Register here</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="lr-news-section" id="lr-news" hidden><div class="lr-news-in">
+  <h2 class="lr-news-h">📢 ຂ່າວ <span>News</span></h2>
+  <ul class="lr-news-list" id="lr-news-list"></ul>
+</div></section>
+
+<section class="block">
+  <div class="wrap">
+    <div class="sec-title"><span class="bubble bg-sun">🪜</span><h2>ອ່ານປຶ້ມ ງ່າຍໆ 4 ຂັ້ນຕອນ<span class="en">4 easy steps</span></h2></div>
+    <ol class="steps">
+      <li><span class="num">1</span><span class="ico">✏️</span><div><strong>ລົງທະບຽນ</strong><span class="en">Register with your email</span></div></li>
+      <li><span class="num">2</span><span class="ico">🔑</span><div><strong>ໃສ່ອີເມລ ແລ້ວເຂົ້າໄປ</strong><span class="en">Enter your email and open the library</span></div></li>
+      <li><span class="num">3</span><span class="ico">▶️</span><div><strong>ເລືອກປຶ້ມ ແລ້ວກົດ “▶ ອ່ານ”</strong><span class="en">Choose a book and tap “▶ Read”</span></div></li>
+      <li><span class="num">4</span><span class="ico">🎧</span><div><strong>ຟັງ ແລະ ອ່ານໄປພ້ອມກັນ</strong><span class="en">Listen and read along — no app needed (download is still available)</span></div></li>
+    </ol>
+  </div>
+</section>
+
+<section class="block">
+  <div class="wrap">
+    <div class="sec-title"><span class="bubble bg-grass">📱</span><h2>ແອັບອ່ານປຶ້ມ (ຟຣີ)<span class="en">Reader apps — free</span></h2></div>
+    <p style="margin:-6px 0 14px;font-size:.95em">ເລືອກແອັບ ຕາມເຄື່ອງຂອງເຈົ້າ.<span class="en">Choose the app for your device.</span></p>
+    <div class="app-cards">
+      <a class="app-card android" href="https://play.google.com/store/apps/details?id=com.colibrio.reader" target="_blank" rel="noopener noreferrer">
+        <span class="dev">🤖</span><span class="txt"><small>Android</small><strong>Colibrio Reader</strong></span><span class="go">ດາວໂຫຼດ ⬇</span>
+      </a>
+      <a class="app-card ios" href="https://apps.apple.com/gb/app/dolphin-easyreader/id1161662515" target="_blank" rel="noopener noreferrer">
+        <span class="dev">🍎</span><span class="txt"><small>iPhone / iPad</small><strong>EasyReader</strong></span><span class="go">ດາວໂຫຼດ ⬇</span>
+      </a>
+      <a class="app-card win" href="https://apps.microsoft.com/detail/9nfzp1g7m2sc" target="_blank" rel="noopener noreferrer">
+        <span class="dev">💻</span><span class="txt"><small>Windows PC</small><strong>Thorium Reader</strong></span><span class="go">ດາວໂຫຼດ ⬇</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="about">
+  <div class="wrap">
+    <div class="sec-title"><span class="bubble bg-sky">🏫</span><h2>ຫ້ອງສະໝຸດນີ້ ແມ່ນຫຍັງ?<span class="en">What is this library?</span></h2></div>
+    <div class="info-cards">
+      <div class="info-card"><div class="ico">🎧</div><h3>ປຶ້ມມີສຽງ</h3>
+        <p>ປຶ້ມ DAISY ອ່ານໃຫ້ຟັງ ແລະ ຕົວໜັງສືມີສີຂຶ້ນ ຕາມສຽງ. ເໝາະກັບເດັກທີ່ອ່ານຍາກ.<span class="en">DAISY books read aloud and highlight the words — good for children who find reading hard.</span></p></div>
+      <div class="info-card"><div class="ico">🧒</div><h3>ສຳລັບເດັກທຸກຄົນ</h3>
+        <p>ລວມທັງເດັກທີ່ມີຄວາມພິການ ແລະ ເດັກທີ່ຢູ່ໄກ.<span class="en">For all children, including children with disabilities and children far from libraries.</span></p></div>
+      <div class="info-card"><div class="ico">🆓</div><h3>ຟຣີ</h3>
+        <p>ລົງທະບຽນດ້ວຍອີເມລ ແລ້ວດາວໂຫຼດປຶ້ມໄດ້ຟຣີ.<span class="en">Register with your email and download books for free.</span></p></div>
+    </div>
+    <p class="small-print">ຫ້ອງສະໝຸດນີ້ ດຳເນີນງານພາຍໃຕ້ສົນທິສັນຍາ Marrakesh. / This library is operated under the Marrakesh Treaty.</p>
+  </div>
+</section>
+
+<section class="block">
+  <div class="wrap">
+    <div class="notice"><span>🔒</span><div><b>ປຶ້ມເຫຼົ່ານີ້ ໃຊ້ອ່ານເອງເທົ່ານັ້ນ. ຫ້າມແກ້ໄຂ, ຫ້າມຂາຍ, ຫ້າມສົ່ງຕໍ່ໃຫ້ຄົນອື່ນ.</b><span class="en">These e-books are for your own reading only. Modifying, selling or passing them on is prohibited by law.</span></div></div>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div id="landing-orgs-container"></div>
+    <div class="footer-copy">© 2026 Lao Multimedia DAISY Library | System Development: <a href="https://www.efa-japan.org" target="_blank" rel="noopener">EFA Japan</a> — <a href="mailto:info@efa-japan.org">info@efa-japan.org</a></div>
+  </div>
+</footer>
+
+<script>
+// ================================================================
+// LIB — shared by lao_library_landing.html and library_lo.html (2026-11)
+//   ・API calls with retry and timeout
+//   ・Book list / config kept in localStorage → shown at once, refreshed in background
+//   ・Session (sessionStorage) shared between the two pages (same origin)
+// ================================================================
+var LIB = (function () {
+  var API = 'https://script.google.com/macros/s/AKfycbx7Y59JsxNTetqv1zgUdJ_EGnYWxD7HmUmrDxa1hKqoz70pMf_GYGSR7y3K0puLZCLkng/exec';
+  var CATALOG_URL = 'https://efajapan.github.io/lao-daisy-library/library_lo_beta.html';
+  var KEY_EMAIL = 'lib_user_email';       // 既存と同じキー（前回のメールを引き継ぐ）
+  var KEY_SESSION = 'lib_user';           // 既存と同じキー（sessionStorage）
+  var KEY_BOOKS = 'lo_books_cache_v2';   // v1.3: v1 is removed below
+  var KEY_CONFIG = 'lo_config_cache_v1';
+  var BOOKS_MAX_AGE = 7 * 24 * 3600 * 1000;    // 1週間より古い控えは使わない
+  var CONFIG_MAX_AGE = 30 * 24 * 3600 * 1000;
+
+  function lsGet(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+  function lsSet(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+  function lsRemove(k) { try { localStorage.removeItem(k); } catch (e) {} }
+  function sleep(ms) { return new Promise(function (r) { setTimeout(r, ms); }); }
+
+  // 通信の一時的な失敗に備え、最大3回まで問い合わせ直す（1回25秒で打ち切り）
+  function fetchJsonWithRetry(url, tries) {
+    tries = tries || 3;
+    var attempt = function (i) {
+      var ctrl = (typeof AbortController !== 'undefined') ? new AbortController() : null;
+      var timer = ctrl ? setTimeout(function () { ctrl.abort(); }, 25000) : null;
+      return fetch(url, ctrl ? { signal: ctrl.signal } : undefined)
+        .then(function (res) { if (!res.ok) throw new Error('HTTP ' + res.status); return res.json(); })
+        .then(function (j) { if (timer) clearTimeout(timer); return j; },
+              function (e) {
+                if (timer) clearTimeout(timer);
+                if (i >= tries) throw e;
+                return sleep(1500 * i).then(function () { return attempt(i + 1); });
+              });
+    };
+    return attempt(1);
+  }
+
+  function readCache(key, maxAge) {
+    var raw = lsGet(key); if (!raw) return null;
+    try {
+      var o = JSON.parse(raw);
+      if (!o || !o.t || (Date.now() - o.t) > maxAge) return null;
+      return o.data;
+    } catch (e) { return null; }
+  }
+  function writeCache(key, data) { lsSet(key, JSON.stringify({ t: Date.now(), data: data })); }
+
+  lsRemove('lo_books_cache_v1');
+  var booksPromise = null;
+  // v1.3: with a pass (Read here), the catalog comes without download links. An expired pass → the catalog without it
+  function lrTok() { try { return (window.LR && LR.token()) || ''; } catch (e) { return ''; } }
+  function fetchBooks() {
+    if (booksPromise) return booksPromise;
+    var tok = lrTok();
+    booksPromise = fetchJsonWithRetry(API + '?action=books' + (tok ? '&token=' + encodeURIComponent(tok) : ''), 3).then(function (data) {
+      if (data && data.error === 'auth' && tok) { try { LR.clearToken(); } catch (e) {} booksPromise = null; return fetchBooks(); }
+      if (data && Array.isArray(data.books)) { try { LR.setServerReader(!!data.reader); } catch (e) {} data = data.books; }
+      if (!Array.isArray(data)) throw new Error('bad books response');
+      writeCache(KEY_BOOKS, data);
+      return data;
+    }).catch(function (e) { booksPromise = null; throw e; });
+    return booksPromise;
+  }
+  function cachedBooks() { var d = readCache(KEY_BOOKS, BOOKS_MAX_AGE); return Array.isArray(d) ? d : null; }
+
+  var configPromise = null;
+  function fetchConfig() {
+    if (configPromise) return configPromise;
+    configPromise = fetchJsonWithRetry(API + '?action=config', 2).then(function (cfg) {
+      if (cfg && typeof cfg === 'object') {
+        // 表示に使う項目だけを控える（メールアドレス等は保存しない）
+        var keep = {};
+        Object.keys(cfg).forEach(function (k) {
+          if (/^org_\d+_(name|logo_url|link|order|category)$/.test(k) || k === 'new_arrival_days') keep[k] = cfg[k];
+        });
+        writeCache(KEY_CONFIG, keep);
+        return keep;
+      }
+      return null;
+    }).catch(function () { configPromise = null; return null; });
+    return configPromise;
+  }
+  function cachedConfig() { return readCache(KEY_CONFIG, CONFIG_MAX_AGE); }
+
+  function auth(email) {
+    return fetchJsonWithRetry(API + '?action=auth&email=' + encodeURIComponent(email), 3);
+  }
+
+  function saveSession(u) { try { sessionStorage.setItem(KEY_SESSION, JSON.stringify(u)); } catch (e) {} }
+  function loadSession() { try { return JSON.parse(sessionStorage.getItem(KEY_SESSION)); } catch (e) { return null; } }
+  function clearSession() { try { sessionStorage.removeItem(KEY_SESSION); } catch (e) {} }
+
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+  function driveThumb(url, size) {
+    size = size || 120;
+    if (!url) return '';
+    if (url.indexOf('data:') === 0) return url;
+    var m = String(url).match(/\/d\/([^/?#]+)/) || String(url).match(/[?&]id=([^&#]+)/);
+    if (m) return 'https://drive.google.com/thumbnail?id=' + m[1] + '&sz=w' + size;
+    return url.indexOf('thumbnail') !== -1 ? url : '';
+  }
+
+  var ORG_CATEGORIES = [
+    { key: 'operator', label_en: 'Operating Organizations', label_lo: 'ໜ່ວຍງານຮ່ວມດຳເນີນງານ' },
+    { key: 'provider', label_en: 'Book-Providing Organizations', label_lo: 'ອົງການສະໜອງປຶ້ມ' },
+    { key: 'sponsor', label_en: 'Sponsor Organizations', label_lo: 'ອົງການສະໜັບສະໜູນ' }
+  ];
+  function orgsFromConfig(cfg, fallback) {
+    var list = [], i = 1;
+    while (cfg && cfg['org_' + i + '_name']) {
+      list.push({
+        name: String(cfg['org_' + i + '_name'] || ''),
+        logo: String(cfg['org_' + i + '_logo_url'] || ''),
+        link: String(cfg['org_' + i + '_link'] || '#'),
+        order: parseInt(cfg['org_' + i + '_order'], 10) || i,
+        category: String(cfg['org_' + i + '_category'] || 'operator')
+      });
+      i++;
+    }
+    return list.length ? list : (fallback || []);
+  }
+  function orgsHtml(cfg, fallback) {
+    var orgs = orgsFromConfig(cfg, fallback), html = '';
+    ORG_CATEGORIES.forEach(function (cat) {
+      var list = orgs.filter(function (o) { return o.category === cat.key; });
+      if (!list.length) return;
+      list.sort(function (a, b) { return a.order - b.order; });
+      html += '<div class="orgs-group"><div class="orgs-label">' + cat.label_lo + '<span class="en">' + cat.label_en + '</span></div><div class="orgs-row">' +
+        list.map(function (o) {
+          var src = driveThumb(o.logo, 120);
+          var plain = o.name.replace(/<[^>]+>/g, ' ');
+          // 名前の <br> は表示用にそのまま使う（設定シート・既定値とも管理者が入力した値）
+          var shown = o.name.replace(/<(?!br\s*\/?>)[^>]*>/gi, '');
+          return '<a class="org-chip" href="' + esc(o.link) + '" target="_blank" rel="noopener">' +
+            (src ? '<img src="' + esc(src) + '" alt="' + esc(plain) + '" loading="lazy">' : '') +
+            '<span>' + shown + '</span></a>';
+        }).join('') + '</div></div>';
+    });
+    return html;
+  }
+
+  return {
+    API: API, CATALOG_URL: CATALOG_URL, KEY_EMAIL: KEY_EMAIL,
+    lsGet: lsGet, lsSet: lsSet, lsRemove: lsRemove, sleep: sleep,
+    fetchJsonWithRetry: fetchJsonWithRetry, fetchBooks: fetchBooks, cachedBooks: cachedBooks,
+    resetBooks: function () { booksPromise = null; },
+    fetchConfig: fetchConfig, cachedConfig: cachedConfig, auth: auth,
+    saveSession: saveSession, loadSession: loadSession, clearSession: clearSession,
+    esc: esc, driveThumb: driveThumb, orgsHtml: orgsHtml
+  };
+})();
+
+
+// ================================================================
+// ORGS — Config sheet (fallback first, then API)
+// ================================================================
+var FALLBACK_ORGS = [
+  { name: "ຫໍສະໝຸດແຫ່ງຊາດລາວ<br>(National Library of Laos)", logo: "data:image/jpeg;base64,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", link: "https://www.facebook.com/profile.php?id=100069231069181", order: 1, category: "operator" },
+  { name: "ມູນນິທິບ້ານເດັກ<br>(Children's Home Foundation)", logo: "data:image/jpeg;base64,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", link: "https://www.facebook.com/childrenshomefoundation", order: 2, category: "operator" },
+  { name: "EFA Japan", logo: "data:image/jpeg;base64,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", link: "https://www.efa-japan.org/", order: 3, category: "operator" }
+];
+function renderOrgs(cfg) {
+  var el = document.getElementById('landing-orgs-container');
+  if (el) el.innerHTML = LIB.orgsHtml(cfg, FALLBACK_ORGS);
+}
+renderOrgs(LIB.cachedConfig() || {});
+LIB.fetchConfig().then(function (cfg) { if (cfg) renderOrgs(cfg); });
+
+// 本の一覧を先に読み込んでおく（ログイン後すぐ表示するため）
+setTimeout(function () { LIB.fetchBooks().catch(function () {}); }, 300);
+
+// ================================================================
+// LOGIN
+// ================================================================
+(function () {
+  var inp = document.getElementById('userEmail');
+  var hint = document.getElementById('email-hint');
+  var hintText = document.getElementById('email-hint-text');
+  var btn = document.getElementById('openLibBtn');
+  var label = document.getElementById('openLibLabel');
+  var LABEL = label.textContent;
+  var saved = LIB.lsGet(LIB.KEY_EMAIL) || '';
+  if (saved) { inp.value = saved; showHint(saved); }
+  inp.addEventListener('input', function () { var v = inp.value.trim(); if (v) LIB.lsSet(LIB.KEY_EMAIL, v); });
+  inp.addEventListener('keydown', function (e) { if (e.key === 'Enter') window.openLibrary(); });
+
+  function showHint(email) {
+    hintText.textContent = '💾 ' + email;
+    hint.style.display = 'flex';
+  }
+  function showError(html) {
+    var el = document.getElementById('landing-login-error');
+    el.innerHTML = html; el.style.display = 'block';
+  }
+  function reset() { btn.disabled = false; label.textContent = LABEL; }
+
+  window.clearEmail = function () {
+    inp.value = ''; hint.style.display = 'none';
+    LIB.lsRemove(LIB.KEY_EMAIL); inp.focus();
+  };
+
+  window.openLibrary = function () {
+    var email = inp.value.trim();
+    document.getElementById('landing-login-error').style.display = 'none';
+    if (!email) { showError('ກະລຸນາໃສ່ອີເມລ ກ່ອນເດີ້.<span class="en">Please enter your email.</span>'); inp.focus(); return; }
+    LIB.lsSet(LIB.KEY_EMAIL, email);
+    btn.disabled = true; label.textContent = '⏳ ລໍຖ້າແດ່...';
+    // ログイン確認と本の一覧を同時に問い合わせる
+    var books = LIB.fetchBooks().catch(function () {});
+    LIB.auth(email).then(function (data) {
+      if (data && data.ok) {
+        // v1.3: keep the pass for Read here (the catalog page uses it)
+        try { if (data.token) localStorage.setItem('lo_lr_token_v1', JSON.stringify({ token: data.token, exp: data.exp }));
+              if (typeof data.reader === 'boolean') localStorage.setItem('lo_lr_reader', data.reader ? '1' : '0');
+              if (data.token && data.attr_needed && Array.isArray(data.attr_choices)) localStorage.setItem('lo_lr_attr_ask', JSON.stringify(data.attr_choices)); } catch (e) {}
+        LIB.saveSession({ email: email, name: data.name || '' });
+        // 一覧が届くのを少しだけ待ってから移動（届いていればカタログがすぐ表示される）
+        return Promise.race([books, LIB.sleep(2500)]).then(function () {
+          window.location.href = LIB.CATALOG_URL + '?email=' + encodeURIComponent(email) + '&auth=1';
+        });
+      }
+      showError('ອີເມລນີ້ ຍັງບໍ່ໄດ້ລົງທະບຽນ.<span class="en">This email is not registered.</span>' +
+        '<a href="register_beta.html">→ ລົງທະບຽນ ຢູ່ນີ້ / Register here</a>');
+      reset();
+    }).catch(function () {
+      showError('ເຊື່ອມຕໍ່ບໍ່ໄດ້. ກະລຸນາລອງໃໝ່ອີກເທື່ອໜຶ່ງ.<span class="en">Connection failed. Please try again.</span>');
+      reset();
+    });
+  };
+})();
+</script>
+
+<style>
+.lr-news-section{background:#FFF8EC;padding:26px 16px;border-top:4px solid #F39800}
+.lr-news-section[hidden]{display:none}
+.lr-news-in{max-width:860px;margin:0 auto}
+.lr-news-h{font-size:22px;color:#004070;margin:0 0 12px;font-weight:800}
+.lr-news-h span{font-size:13px;color:#546E7A;font-weight:600;margin-left:6px}
+.lr-news-list{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.lr-news-item{background:#fff;border:2px solid #F7D9A8;border-radius:16px;padding:14px 16px}
+.lr-news-item.imp{border-color:#F39800;box-shadow:0 4px 14px rgba(243,152,0,.18)}
+.lr-news-meta{display:flex;gap:8px;align-items:center;font-size:13px;color:#546E7A;margin-bottom:4px}
+.lr-news-new{background:#E53935;color:#fff;font-weight:800;font-size:11px;padding:2px 8px;border-radius:999px}
+.lr-news-t{font-size:17px;font-weight:800;color:#1A2E45;line-height:1.6}
+.lr-news-te{font-size:13px;color:#546E7A;margin-top:2px}
+.lr-news-b{font-size:15px;color:#1A2E45;line-height:1.8;margin-top:6px;white-space:pre-line}
+.lr-news-be{font-size:13px;color:#546E7A;line-height:1.6;margin-top:2px;white-space:pre-line}
+</style>
+<script>
+// v1.3: notices (NEWS sheet). Shown at once from the device copy (or the first notice), then refreshed
+(function () {
+  var KEY = 'lo_lr_news_v1';
+  var DEF = [{ date: '2026-11-20', lo: 'ຕອນນີ້ ອ່ານປຶ້ມໃນຫໍສະໝຸດໄດ້ເລີຍ', en: 'You can now read books right in the library',
+    body_lo: 'ກົດ "▶ ອ່ານ" ແລ້ວອ່ານໄດ້ທັນທີ ບໍ່ຕ້ອງໃຊ້ແອັບ. ປ່ຽນຄວາມໄວ ແລະ ສີໄດ້. ຍັງດາວໂຫຼດໄດ້ຄືເກົ່າ.',
+    body_en: 'Just tap "▶ Read" — no app needed. You can change the reading speed and colors. Download is still available.', important: true }];
+  var e = LIB.esc;
+  function fmt(d) { var m = /^(\d{4})-(\d{2})-(\d{2})/.exec(d || ''); return m ? Number(m[3]) + '/' + Number(m[2]) + '/' + m[1] : e(d); }
+  function render(items) {
+    var L = document.getElementById('lr-news-list'), S = document.getElementById('lr-news');
+    if (!L || !S) return; S.hidden = !items.length;
+    var now = Date.now();
+    L.innerHTML = items.map(function (n) {
+      var isNew = n.date && (now - new Date(n.date + 'T00:00:00+07:00').getTime()) / 86400000 <= 30;
+      return '<li class="lr-news-item' + (n.important ? ' imp' : '') + '"><div class="lr-news-meta"><span>' + fmt(n.date) + '</span>' +
+        (isNew ? '<span class="lr-news-new">NEW</span>' : '') + '</div>' +
+        (n.lo ? '<div class="lr-news-t">' + e(n.lo) + '</div>' : '') + (n.en ? '<div class="lr-news-te">' + e(n.en) + '</div>' : '') +
+        (n.body_lo ? '<div class="lr-news-b">' + e(n.body_lo) + '</div>' : '') + (n.body_en ? '<div class="lr-news-be">' + e(n.body_en) + '</div>' : '') + '</li>';
+    }).join('');
+  }
+  var c = null; try { c = JSON.parse(localStorage.getItem(KEY) || 'null'); } catch (x) {}
+  render(Array.isArray(c) ? c : DEF);
+  LIB.fetchJsonWithRetry(LIB.API + '?action=news', 2).then(function (j) {
+    if (!j || !Array.isArray(j.news)) return;
+    try { localStorage.setItem(KEY, JSON.stringify(j.news)); } catch (x) {}
+    render(j.news);
+  }).catch(function () {});
+})();
+</script>
+<div style="position:fixed;left:8px;bottom:8px;z-index:1500;background:#F39800;color:#fff;font-weight:800;font-size:12px;padding:4px 10px;border-radius:999px;font-family:sans-serif">β (test)</div>
+</body>
+</html>
