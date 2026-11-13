@@ -538,7 +538,6 @@ img { max-width: 100%; }
      ・The font inside the EPUB (Phetsarath OT) is used for the page
      ============================================================ -->
 <style>
-<style>
 #lrv{--efa-blue:#0065A4;--efa-light:#E6F2FA;--efa-accent:#F39800;--ink:#1A2E45;--bg:#FFFDF7;--panel:#fff;--line:#B8D9F0;--btn:#E6F2FA;--sub:#546E7A;--hl:#FFEF7A;--hlink:#000;--fs:22px;--lh:1.9;
   position:fixed;inset:0;z-index:100000;background:var(--bg);color:var(--ink);display:none;flex-direction:column;font-family:"Phetsarath OT","Noto Sans Lao Looped","Noto Sans Lao","Segoe UI",sans-serif}
 #lrv.open{display:flex}
@@ -743,6 +742,32 @@ const escH = x => String(x || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').r
 const TOKEN_KEY = 'lo_lr_token_v1', PREF_KEY = 'lo_lr_pref_v1', LOGQ = 'lo_lr_readlog_q', DLG_OFF = 'lo_lr_dlg_off', ATTR_LATER = 'lo_lr_attr_later';
 // "About you" choices come from GAS as "English / Lao" (same text as written in the Users sheet)
 const ATTR_ICON = { 'Child': '🧒', 'Parent or family': '👪', 'Teacher': '🏫', 'Librarian': '📚', 'Support organization': '🤝', 'Other': '✨' };
+// A book is big (Lao books: 3–8 MB with sound). The normal 25-second limit is too short, so the book has its own fetch:
+// up to 3 minutes, shows how much has arrived, and tries once more if the line breaks.
+async function fetchBig(p) {
+  const url = LIB.API + '?' + new URLSearchParams(p);
+  let last;
+  for (let i = 1; i <= 2; i++) {
+    const ctl = window.AbortController ? new AbortController() : null;
+    const timer = ctl ? setTimeout(() => ctl.abort(), 180000) : null;
+    try {
+      const r = await fetch(url, ctl ? { signal: ctl.signal } : {});
+      let txt;
+      if (r.body && r.body.getReader && window.TextDecoder) {
+        const rd = r.body.getReader(), dec = new TextDecoder(); let got = 0, parts = [];
+        for (;;) { const c = await rd.read(); if (c.done) break; got += c.value.length; parts.push(dec.decode(c.value, { stream: true }));
+          const el = $('lr-busy-mb'); if (el) el.textContent = (got / 1048576 * 0.75).toFixed(1) + ' MB'; }
+        parts.push(dec.decode()); txt = parts.join('');
+      } else txt = await r.text();
+      const j = JSON.parse(txt);
+      if (j && j.error) throw new Error(String(j.error));
+      return j;
+    } catch (e) {
+      last = e; if (/auth|bad_id|not_found|no_file|too_large/.test(String(e && e.message))) throw e;
+    } finally { if (timer) clearTimeout(timer); }
+  }
+  throw last || new Error('network');
+}
 // GAS (lao_library_reader.gs) — GET with retry. {error:'auth'} → Error('auth')
 const api = (p, n) => LIB.fetchJsonWithRetry(LIB.API + '?' + new URLSearchParams(p), n || 2).then(j => {
   if (j && j.error) throw new Error(String(j.error)); return j; });
@@ -814,7 +839,7 @@ function needZip() {
 async function fetchBook(book) {
   const token = LR.token();
   if (!token) { LR.authLost(); throw new Error('auth'); }
-  const j = await api({ action: 'book', token: token, id: book.id }, 3);
+  const j = await fetchBig({ action: 'book', token: token, id: book.id });
   const bin = atob(j.b64), u8 = new Uint8Array(bin.length);
   for (let i = 0; i < bin.length; i++) u8[i] = bin.charCodeAt(i);
   return { blob: new Blob([u8], { type: 'application/epub+zip' }), fileId: j.file_key || j.fileId, name: j.name };
@@ -823,7 +848,7 @@ async function fetchBook(book) {
 async function getBookRec(book) {
   const old = await DB.get(book.id).catch(() => null);
   if (old && old.blob && (!book.fileId || old.fileId === book.fileId)) return old;
-  busy(true, '📖 ກຳລັງກຽມປຶ້ມ…<br><span style="font-size:14px;font-weight:400">ປຶ້ມທີ່ເປີດຄັ້ງທຳອິດ ລໍຖ້າໜ້ອຍໜຶ່ງເດີ້ / Getting your book…</span>');
+  busy(true, '📖 ກຳລັງກຽມປຶ້ມ…<br><span style="font-size:14px;font-weight:400">ປຶ້ມທີ່ເປີດຄັ້ງທຳອິດ ລໍຖ້າໜ້ອຍໜຶ່ງເດີ້ (ປະມານ 10–30 ວິນາທີ) / Getting your book… (about 10–30 seconds)</span><br><span id="lr-busy-mb" style="font-size:14px;font-weight:400"></span>');
   try {
     const got = await fetchBook(book);
     await needZip();
