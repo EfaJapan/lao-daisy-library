@@ -1711,7 +1711,7 @@ function renderBooks() {
   });
 
   // 新刊：新しい順
-  var newBooks = allBooks.filter(function (b) { return b._new; })
+  var newBooks = allBooks.filter(function (b) { return b._added > 0; })   // 2026-11-16：新しい順に12冊まで
     .sort(function (a, b) { return b._added - a._added; }).slice(0, SITE_CONFIG.new_arrival_max);
   var wrap = document.getElementById('new-arrivals-wrap');
   wrap.style.display = newBooks.length ? 'block' : 'none';
