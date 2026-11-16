@@ -530,6 +530,73 @@ img { max-width: 100%; }
   </div>
 </footer>
 
+<!-- 2026-11-16：新刊の段を左へ自動で流す -->
+<style>.shelf-row.od-auto { scroll-snap-type: none; }</style>
+<script>
+(function () {
+  var S = { raf: 0, html: null, x: 0, half: 0, hold: 0, hover: false, focus: false, vis: true, bound: false };
+  var SPEED = 0.028;   // 1秒に 28px ほど
+  function row() { return document.getElementById('new-arrivals-grid'); }
+  function reduced() { return !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches); }
+  window.odNewSet = function (html) {
+    var r = row(); if (!r) return;
+    if (html === S.html) { if (!S.half) start(); return; }
+    S.html = html; stop(); r.innerHTML = html; r.scrollLeft = 0;
+    requestAnimationFrame(start);
+  };
+  function stop() { cancelAnimationFrame(S.raf); S.raf = 0; S.half = 0; var r = row(); if (r) r.classList.remove('od-auto'); }
+  function start() {
+    var r = row(); if (!r || reduced()) return;
+    stop();
+    [].slice.call(r.querySelectorAll('.od-clone')).forEach(function (c) { c.parentNode.removeChild(c); });
+    if (!r.offsetParent || r.scrollWidth <= r.clientWidth + 8) return;     // 見えていない・1画面に収まる
+    var orig = [].slice.call(r.children);
+    orig.forEach(function (c) {
+      var d = c.cloneNode(true); d.className += ' od-clone'; d.setAttribute('aria-hidden', 'true'); d.inert = true;
+      [].slice.call(d.querySelectorAll('a,button,summary,[tabindex]')).forEach(function (b) { b.tabIndex = -1; });
+      r.appendChild(d);
+    });
+    S.half = r.children[orig.length].offsetLeft - orig[0].offsetLeft;
+    if (S.half <= 0) { stop(); return; }
+    r.classList.add('od-auto');
+    S.x = r.scrollLeft; bind(r);
+    var last = performance.now();
+    var lrv = document.getElementById('lrv');
+    function step(now) {
+      var dt = Math.min(now - last, 80); last = now;
+      var still = S.hover || S.focus || now < S.hold || !S.vis || document.hidden || !r.offsetParent ||
+                  (lrv && lrv.classList.contains('open'));
+      if (still) S.x = r.scrollLeft;
+      else { S.x += dt * SPEED; if (S.x >= S.half) S.x -= S.half; r.scrollLeft = S.x; }
+      S.raf = requestAnimationFrame(step);
+    }
+    S.raf = requestAnimationFrame(step);
+  }
+  function bind(r) {
+    if (S.bound) return; S.bound = true;
+    var hold = function (ms) { S.hold = performance.now() + ms; };
+    r.addEventListener('pointerenter', function (e) { if (e.pointerType === 'mouse') S.hover = true; });
+    r.addEventListener('pointerleave', function (e) { if (e.pointerType === 'mouse') S.hover = false; });
+    r.addEventListener('touchstart', function () { hold(5000); }, { passive: true });
+    r.addEventListener('touchmove', function () { hold(5000); }, { passive: true });
+    r.addEventListener('wheel', function () { hold(3000); }, { passive: true });
+    r.addEventListener('focusin', function () { S.focus = true; });
+    r.addEventListener('focusout', function () { S.focus = false; });
+    r.addEventListener('scroll', function () {           // 指で動かしても、つなぎ目で切れない
+      if (!S.half) return;
+      if (r.scrollLeft >= S.half) r.scrollLeft -= S.half;
+      else if (r.scrollLeft <= 0 && performance.now() < S.hold) r.scrollLeft += S.half;
+    }, { passive: true });
+    if ('IntersectionObserver' in window) new IntersectionObserver(function (es) {
+      S.vis = es[0].isIntersecting; if (S.vis && !S.half && S.html) start();
+    }).observe(r);
+  }
+  var rt = 0;
+  window.addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(function () { if (S.html) { var r = row(); if (r) r.scrollLeft = 0; start(); } }, 300); });
+})();
+</script>
+
+
 <!-- ============================================================
      "Read here" for the Lao DAISY Library (v1.3, 2026-11) — bookshelf, reader, settings, About you
      Base: the bilingual library module (efajapan.github.io/ourdaisy, 2026-11-13, incl. the Safari fixes)
@@ -722,7 +789,7 @@ img { max-width: 100%; }
 <!-- About you (once) -->
 <div class="lr-sheet-bg" id="lr-attr" role="dialog" aria-label="ກ່ຽວກັບທ່ານ / About you"><div class="lr-sheet">
   <h3>👋 ບອກພວກເຮົາແດ່ ທ່ານແມ່ນໃຜ? <span class="lr-en">Tell us about you</span></h3>
-  <p class="lr-note" style="font-size:15px;line-height:1.8">ກົດທຸກອັນທີ່ກົງກັບທ່ານ (ຄັ້ງດຽວ). ເພື່ອປັບປຸງຫໍສະໝຸດ.<br>
+  <p class="lr-note" style="font-size:15px;line-height:1.8">ກົດທຸກອັນທີ່ກົງກັບທ່ານ (ຄັ້ງດຽວ). ເພື່ອປັບປຸງຫ້ອງສະໝຸດ.<br>
     <span class="lr-en">Tap all that apply (only once). This helps us improve the library.</span></p>
   <div class="lr-tiles" id="lr-attr-tiles"></div>
   <div class="lr-row2"><button class="lr-sub" id="lr-attr-later">ພາຍຫຼັງ / Later</button><button class="lr-main" id="lr-attr-ok" disabled>ສົ່ງ / Send</button></div>
@@ -1157,7 +1224,7 @@ LR.download = async function (book) {
 
 async function renderShelf() {
   const all = (await DB.all().catch(() => [])).sort((a, b) => (b.readAt || 0) - (a.readAt || 0)), L = $('lr-list');
-  if (!all.length) { L.innerHTML = '<p class="lr-note" style="font-size:16px">ຍັງບໍ່ມີປຶ້ມ. ກົດ “▶ ອ່ານ” ຢູ່ໃນຫໍສະໝຸດເດີ້.<br><span class="lr-en">No books yet. Tap “▶ Read” in the library.</span></p>'; return; }
+  if (!all.length) { L.innerHTML = '<p class="lr-note" style="font-size:16px">ຍັງບໍ່ມີປຶ້ມ. ກົດ “▶ ອ່ານ” ຢູ່ໃນຫ້ອງສະໝຸດເດີ້.<br><span class="lr-en">No books yet. Tap “▶ Read” in the library.</span></p>'; return; }
   L.innerHTML = '';
   const total = all.reduce((s, r) => s + recSize(r), 0);
   const sum = document.createElement('p'); sum.className = 'lr-note';
@@ -1648,7 +1715,7 @@ function renderBooks() {
     .sort(function (a, b) { return b._added - a._added; }).slice(0, SITE_CONFIG.new_arrival_max);
   var wrap = document.getElementById('new-arrivals-wrap');
   wrap.style.display = newBooks.length ? 'block' : 'none';
-  document.getElementById('new-arrivals-grid').innerHTML = newBooks.map(bookCard).join('');
+  odNewSet(newBooks.map(bookCard).join(''));   // 2026-11-16：新刊の段は左へ自動で流れる
 
   var grid = document.getElementById('all-books-grid');
   grid.innerHTML = filtered.length ? filtered.map(bookCard).join('')
