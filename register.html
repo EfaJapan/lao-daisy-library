@@ -1,251 +1,221 @@
 <!DOCTYPE html>
-<html lang="lo"><head>
+<html lang="lo">
+<head>
   <link rel="icon" type="image/png" href="favicon.png">
   <link rel="apple-touch-icon" href="favicon.png">
   <meta charset="UTF-8">
-  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ລົງທະບຽນ / Register — ຫໍສະໝຸດ DAISY</title>
+  <title>ລົງທະບຽນ / Register — ຫ້ອງສະໝຸດ DAISY</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Lao+Looped:wght@400;700&display=swap">
+  <!-- v1.3 (2026-11): registration on the library's own page (no Google Form).
+       Answers are written to the Users sheet in the same format as the Google Form (lao_library_reader.gs rdRegister_). -->
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      min-height: 100vh;
-      background: linear-gradient(135deg, #004070 0%, #0065A4 60%, #0088cc 100%);
-      font-family: 'Phetsarath OT', 'Noto Sans Lao', 'Segoe UI', sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    /* ── header ── */
-    .header {
-      width: 100%;
-      background: rgba(0,0,0,0.25);
-      padding: 14px 20px;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-    .header-back {
-      color: rgba(255,255,255,0.85);
-      text-decoration: none;
-      font-size: 0.9em;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      transition: color 0.2s;
-    }
-    .header-back:hover { color: #fff; }
-    .header-title {
-      color: #fff;
-      font-size: 1em;
-      font-weight: 600;
-    }
-
-    /* ── main container ── */
-    .container {
-      width: 100%;
-      max-width: 720px;
-      padding: 24px 16px 40px;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 20px;
-    }
-
-    /* ── info card ── */
-    .info-card {
-      background: rgba(255,255,255,0.13);
-      border: 1.5px solid rgba(255,255,255,0.3);
-      border-radius: 16px;
-      padding: 18px 22px;
-      width: 100%;
-      color: #fff;
-      display: flex;
-      align-items: flex-start;
-      gap: 14px;
-    }
-    .info-card .icon { font-size: 1.6em; flex-shrink: 0; margin-top: 2px; }
-    .info-card p { font-size: 0.92em; line-height: 1.7; }
-    .info-card strong { display: block; font-size: 1em; margin-bottom: 4px; }
-
-    /* ── post-submit overlay ── */
-    #redirect-overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: linear-gradient(135deg, #004070, #0065A4);
-      z-index: 999;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 24px;
-      text-align: center;
-      padding: 24px;
-    }
-    #redirect-overlay.show { display: flex; }
-    .overlay-icon { font-size: 4em; }
-    .overlay-title {
-      color: #fff;
-      font-size: 1.5em;
-      font-weight: 700;
-    }
-    .overlay-sub {
-      color: rgba(255,255,255,0.85);
-      font-size: 0.95em;
-      line-height: 1.8;
-    }
-    .overlay-progress {
-      width: 200px;
-      height: 6px;
-      background: rgba(255,255,255,0.25);
-      border-radius: 3px;
-      overflow: hidden;
-    }
-    .overlay-bar {
-      height: 100%;
-      background: #F39800;
-      border-radius: 3px;
-      width: 0%;
-      transition: width 3s linear;
-    }
-    .overlay-skip {
-      margin-top: 8px;
-      background: rgba(255,255,255,0.18);
-      border: 1.5px solid rgba(255,255,255,0.35);
-      color: #fff;
-      border-radius: 10px;
-      padding: 10px 28px;
-      font-size: 0.95em;
-      cursor: pointer;
-      font-family: inherit;
-      transition: background 0.2s;
-    }
-    .overlay-skip:hover { background: rgba(255,255,255,0.28); }
-
-    /* ── form wrapper ── */
-    .form-wrapper {
-      width: 100%;
-      background: #fff;
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
-    }
-    #gform {
-      width: 100%;
-      border: none;
-      display: block;
-      /* height adjusted by JS */
-      min-height: 600px;
-      height: 820px;
-    }
-
-    @media (max-width: 600px) {
-      .info-card { padding: 14px 16px; }
-      #gform { height: 880px; }
-    }
+    body { min-height: 100vh; background: linear-gradient(135deg, #004070 0%, #0065A4 60%, #0088cc 100%);
+      font-family: 'Phetsarath OT', 'Noto Sans Lao Looped', 'Noto Sans Lao', 'Segoe UI', sans-serif; color: #1A2E45; }
+    .header { background: rgba(0,0,0,0.25); padding: 14px 20px; display: flex; align-items: center; gap: 14px; }
+    .header a { color: rgba(255,255,255,0.9); text-decoration: none; font-size: 0.95em; }
+    .header span { color: #fff; font-weight: 700; }
+    .wrap { max-width: 640px; margin: 0 auto; padding: 20px 16px 48px; }
+    .card { background: #fff; border-radius: 20px; padding: 20px 18px; box-shadow: 0 8px 32px rgba(0,0,0,0.2); }
+    h1 { font-size: 1.35em; color: #004070; line-height: 1.6; }
+    .en { display: block; font-size: 0.78em; color: #546E7A; font-weight: 400; }
+    .lead { margin: 6px 0 4px; line-height: 1.8; font-size: 0.98em; }
+    .box { border: 2px solid #B8D9F0; border-radius: 16px; padding: 14px; margin-top: 14px; }
+    .box.err { border-color: #E53935; background: #FFF5F5; }
+    .q { font-weight: 700; font-size: 1.05em; line-height: 1.7; }
+    .q .n { display: inline-flex; width: 28px; height: 28px; border-radius: 14px; background: #F39800; color: #fff; align-items: center; justify-content: center; font-size: 15px; margin-right: 6px; }
+    .req { color: #E53935; font-size: 0.75em; margin-left: 6px; white-space: nowrap; }
+    .opt { color: #546E7A; font-size: 0.75em; margin-left: 6px; white-space: nowrap; }
+    .hint { font-size: 0.85em; color: #546E7A; line-height: 1.7; margin: 4px 0 8px; }
+    input[type=text], input[type=email], select { width: 100%; min-height: 54px; font: inherit; font-size: 17px; padding: 10px 12px;
+      border: 2px solid #B8D9F0; border-radius: 12px; background: #fff; color: #1A2E45; margin-top: 6px; }
+    .msg { display: none; color: #C62828; font-weight: 700; font-size: 0.9em; margin-top: 6px; }
+    .box.err .msg { display: block; }
+    .tiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 8px; margin-top: 8px; }
+    .tile { min-height: 72px; border-radius: 14px; background: #E6F2FA; border: 4px solid transparent; font: inherit; font-size: 15px; font-weight: 700;
+      padding: 6px 4px; line-height: 1.35; color: #1A2E45; cursor: pointer; }
+    .tile .ic { display: block; font-size: 26px; }
+    .tile small { display: block; font-size: 12px; color: #546E7A; font-weight: 400; }
+    .tile[aria-pressed="true"] { border-color: #F39800; background: #FFF3E0; }
+    .submit { width: 100%; min-height: 66px; border: 0; border-radius: 18px; background: #F39800; color: #fff; font: inherit; font-size: 1.2em; font-weight: 700; cursor: pointer; margin-top: 18px; }
+    .submit:disabled { opacity: .6; }
+    .sum { display: none; background: #FFF5F5; border: 2px solid #E53935; border-radius: 14px; padding: 10px 12px; color: #C62828; font-weight: 700; margin-top: 12px; line-height: 1.7; }
+    .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+    .login { text-align: center; margin-top: 16px; font-size: 0.95em; }
+    .login a { color: #0065A4; font-weight: 700; }
+    #done { display: none; position: fixed; inset: 0; background: linear-gradient(135deg, #004070, #0065A4); z-index: 999; flex-direction: column;
+      align-items: center; justify-content: center; gap: 20px; text-align: center; padding: 24px; color: #fff; }
+    #done.show { display: flex; }
+    #done .big { font-size: 4em; }
+    #done .t { font-size: 1.4em; font-weight: 700; line-height: 1.6; }
+    #done button { background: rgba(255,255,255,0.18); border: 1.5px solid rgba(255,255,255,0.4); color: #fff; border-radius: 12px; padding: 12px 28px; font: inherit; cursor: pointer; }
+    
   </style>
 </head>
 <body>
-
-  <!-- header -->
   <div class="header">
-    <a class="header-back" href="lao_library_landing.html">← ກັບຄືນ / Back</a>
-    <span class="header-title">📚 ລົງທະບຽນ ຫໍສະໝຸດ DAISY / Register</span>
+    <a href="lao_library_landing.html">← ກັບຄືນ / Back</a>
+    <span>📚 ລົງທະບຽນ / Register</span>
   </div>
+  <div class="wrap">
+    <form class="card" id="f" novalidate>
+      <h1>✏️ ລົງທະບຽນ ຫ້ອງສະໝຸດ DAISY<span class="en">Register for the Lao DAISY Library</span></h1>
+      <p class="lead">ບໍ່ເສຍຄ່າ. ໃຊ້ເວລາ 1 ນາທີ. ລົງທະບຽນແລ້ວ ເຂົ້າຫ້ອງສະໝຸດໄດ້ທັນທີ.<span class="en">Free. It takes 1 minute. After registering you can open the library at once.</span></p>
 
-  <!-- main container -->
-  <div class="container">
-
-    <!-- info card -->
-    <div class="info-card">
-      <span class="icon">💡</span>
-      <div>
-        <strong>ສົ່ງຟອມສຳເລັດ → ໜ້າຫໍສະໝຸດຈະເປີດອັດຕະໂນມັດ</strong>
-        <p>
-          ກະລຸນາໃສ່ອີເມລຂອງທ່ານ ແລ້ວກົດ「Submit」。<br>
-          ຫຼັງຈາກສົ່ງຟອມ, ຈະຍ້າຍໄປໜ້າຫໍສະໝຸດໂດຍອັດຕະໂນມັດ。<br>
-          <small>After submitting, you will be automatically taken to the library page.</small>
-        </p>
+      <div class="box" id="b-name">
+        <div class="q"><span class="n">1</span>ຊື່ <span class="req">ຕ້ອງໃສ່ / required</span><span class="en">Name</span></div>
+        <input type="text" id="name" autocomplete="name" maxlength="80">
+        <div class="msg">ກະລຸນາໃສ່ຊື່ / Please enter your name</div>
       </div>
-    </div>
 
-    <!-- Google Form (embedded) -->
-    <div class="form-wrapper">
-      <iframe
-        id="gform"
-        src="https://docs.google.com/forms/d/e/1FAIpQLSdmR1HHqNKBmiyXbLoogOYwYavVJJya9Nm_k6hDZftvc9CIpQ/viewform?embedded=true"
-        frameborder="0"
-        marginheight="0"
-        marginwidth="0"
-        title="ລົງທະບຽນ / Registration Form"
-      >Loading...</iframe>
-    </div>
+      <div class="box" id="b-email">
+        <div class="q"><span class="n">2</span>ອີເມລ <span class="req">ຕ້ອງໃສ່ / required</span><span class="en">Email</span></div>
+        <p class="hint">👉 ໃຊ້ຕົວພິມນ້ອຍ (a-z), ຕົວເລກ (0-9) ແລະ @. ອີເມລນີ້ ໃຊ້ເຂົ້າຫ້ອງສະໝຸດ.<br>Use small letters (a-z), numbers (0-9) and @. You will use this email to open the library.</p>
+        <input type="email" id="email" autocomplete="email" inputmode="email" autocapitalize="none" spellcheck="false" maxlength="120" placeholder="name@example.com">
+        <div class="msg">ອີເມລບໍ່ຖືກຕ້ອງ / Please check your email</div>
+      </div>
 
-  </div><!-- /container -->
+      <div class="box" id="b-birth">
+        <div class="q"><span class="n">3</span>ປີເກີດ <span class="req">ຕ້ອງໃສ່ / required</span><span class="en">Birth year</span></div>
+        <select id="birth"><option value="">— ເລືອກ / Choose —</option></select>
+        <div class="msg">ກະລຸນາເລືອກປີເກີດ / Please choose your birth year</div>
+      </div>
 
-  <!-- post-submit redirect overlay -->
-  <div id="redirect-overlay">
-    <div class="overlay-icon">✅</div>
-    <div class="overlay-title">
-      ລົງທະບຽນສຳເລັດ！<br>
-      <small style="font-size:0.6em;font-weight:400">Registration complete!</small>
-    </div>
-    <div class="overlay-sub">
-      ກຳລັງຍ້າຍໄປໜ້າຫໍສະໝຸດ...<br>
-      <small>Moving to library page...</small>
-    </div>
-    <div class="overlay-progress">
-      <div class="overlay-bar" id="progress-bar"></div>
-    </div>
-    <button class="overlay-skip" onclick="goToLibrary()">
-      📚 ເຂົ້າຫໍສະໝຸດເລີຍ / Go to Library now
-    </button>
+      <div class="box" id="b-gender">
+        <div class="q"><span class="n">4</span>ເພດ <span class="req">ຕ້ອງໃສ່ / required</span><span class="en">Gender</span></div>
+        <div class="tiles" id="gender"></div>
+        <div class="msg">ກະລຸນາເລືອກ / Please choose one</div>
+      </div>
+
+      <div class="box" id="b-province">
+        <div class="q"><span class="n">5</span>ແຂວງທີ່ຂ້ອຍອາໄສຢູ່ <span class="req">ຕ້ອງໃສ່ / required</span><span class="en">Province where I live</span></div>
+        <select id="province"><option value="">— ເລືອກ / Choose —</option></select>
+        <div class="msg">ກະລຸນາເລືອກແຂວງ / Please choose your province</div>
+      </div>
+
+      <div class="box" id="b-attr">
+        <div class="q"><span class="n">6</span>ທ່ານແມ່ນໃຜ? <span class="opt">ບໍ່ບັງຄັບ / optional</span><span class="en">About you (tap all that apply)</span></div>
+        <div class="tiles" id="attr"></div>
+      </div>
+
+      <div class="hp" aria-hidden="true"><input type="text" id="website" tabindex="-1" autocomplete="off"></div>
+      <button type="submit" class="submit" id="go">📚 ລົງທະບຽນ ແລະ ເຂົ້າຫ້ອງສະໝຸດ<span class="en" style="color:#fff">Register and open the library</span></button>
+      <div class="sum" id="sum"></div>
+      <p class="login">ລົງທະບຽນແລ້ວບໍ? / Already registered? <a href="lao_library_landing.html">ເຂົ້າສູ່ລະບົບ / Log in</a></p>
+    </form>
   </div>
 
-  <script>
-  (function () {
-    var LIBRARY_URL = 'lao_library_landing.html';
-    var REDIRECT_DELAY = 3000; // ms
-    var iframe = document.getElementById('gform');
-    var overlay = document.getElementById('redirect-overlay');
-    var bar     = document.getElementById('progress-bar');
-    var loadCount = 0;
-    var redirectTimer = null;
+  <div id="done" role="status">
+    <div class="big">✅</div>
+    <div class="t" id="done-t">ລົງທະບຽນສຳເລັດ!<span class="en" style="color:#fff">Registration complete!</span></div>
+    <div>ກຳລັງເປີດຫ້ອງສະໝຸດ… / Opening the library…</div>
+    <button type="button" id="done-go">📚 ເຂົ້າຫ້ອງສະໝຸດເລີຍ / Go to the library</button>
+  </div>
+  
+<script>
+(function () {
+  var API = 'https://script.google.com/macros/s/AKfycbxBFg8t1XfQo-Oh80-yQMD2jaPpUqfLEVIWRpcZz8SvDdZuNC3FYboGSHpkRxmt_uWlaA/exec';
+  var CATALOG = 'library_lo.html';
+  // the same choices as the Google Form (lao_library_reader.gs: RD_GENDERS_ / RD_PROVINCES_ / RD_ATTR_CHOICES_)
+  var GENDERS = [['Male / ຊາຍ', '👨'], ['Female / ຍິງ', '👩'], ['Other / ອື່ນໆ', '🙂']];
+  var PROVINCES = ['Vientiane Capital / ນະຄອນຫຼວງວຽງຈັນ', 'Phongsali / ຜົ້ງສາລີ', 'Luang Namtha / ຫຼວງນໍ້າທາ', 'Oudomxay / ອຸດົມໄຊ',
+    'Bokeo / ບໍ່ແກ້ວ', 'Luang Prabang / ຫຼວງພະບາງ', 'Huaphanh / ຫົວພັນ', 'Xayabury / ໄຊຍະບູລີ', 'Xiengkhuang / ຊຽງຂວາງ',
+    'Vientiane Province / ແຂວງວຽງຈັນ', 'Bolikhamsai / ບໍລິຄໍາໄຊ', 'Khammuan / ຄໍາມ່ວນ', 'Savannakhet / ສະຫວັນນະເຂດ',
+    'Saravane / ສາລະວັນ', 'Sekong / ເຊກອງ', 'Champasak / ຈໍາປາສັກ', 'Attapeu / ອັດຕະປື', 'Xaisomboun / ໄຊສົມບູນ'];
+  var ATTR = [['Child / ເດັກນ້ອຍ', '🧒'], ['Parent or family / ພໍ່ແມ່ ຫຼື ຄອບຄົວ', '👪'], ['Teacher / ຄູ', '🏫'], ['Librarian / ບັນນາຮັກ', '📚'],
+    ['Support organization / ອົງການຊ່ວຍເຫຼືອ', '🤝'], ['Other / ອື່ນໆ', '✨']];
+  var $ = function (id) { return document.getElementById(id); };
+  function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
+  function lo(v) { var p = v.split(' / '); return p.slice(1).join(' / ') || v; }
+  function en(v) { return v.split(' / ')[0]; }
 
-    // ── monitor iframe load events ──
-    // 1st load: form itself
-    // 2nd load: confirmation page after submit → start redirect
-    iframe.addEventListener('load', function () {
-      loadCount++;
-      if (loadCount >= 2) {
-        triggerRedirect();
-      }
+  var y = new Date().getFullYear();
+  for (var i = y; i >= 1940; i--) $('birth').insertAdjacentHTML('beforeend', '<option value="' + i + '">' + i + '</option>');
+  PROVINCES.forEach(function (p) { $('province').insertAdjacentHTML('beforeend', '<option value="' + esc(p) + '">' + esc(lo(p)) + ' — ' + esc(en(p)) + '</option>'); });
+  function tiles(host, list, multi) {
+    list.forEach(function (x) {
+      var b = document.createElement('button'); b.type = 'button'; b.className = 'tile'; b.dataset.v = x[0]; b.setAttribute('aria-pressed', 'false');
+      b.innerHTML = '<span class="ic">' + x[1] + '</span>' + esc(lo(x[0])) + '<small>' + esc(en(x[0])) + '</small>';
+      b.onclick = function () {
+        var on = b.getAttribute('aria-pressed') !== 'true';
+        if (!multi) host.querySelectorAll('.tile').forEach(function (t) { t.setAttribute('aria-pressed', 'false'); });
+        b.setAttribute('aria-pressed', String(on || !multi));
+        host.parentNode.classList.remove('err');
+      };
+      host.appendChild(b);
     });
+  }
+  tiles($('gender'), GENDERS, false);
+  tiles($('attr'), ATTR, true);
+  ['name', 'email', 'birth', 'province'].forEach(function (k) {
+    $(k).addEventListener('input', function () { $('b-' + k).classList.remove('err'); });
+    $(k).addEventListener('change', function () { $('b-' + k).classList.remove('err'); });
+  });
+  try { var saved = localStorage.getItem('lib_user_email'); if (saved) $('email').value = saved; } catch (e) {}
+  $('email').addEventListener('blur', function () { $('email').value = $('email').value.trim().toLowerCase(); });
 
-    function triggerRedirect() {
-      // show overlay
-      overlay.classList.add('show');
+  function picked(host) { return Array.prototype.map.call(host.querySelectorAll('[aria-pressed="true"]'), function (b) { return b.dataset.v; }); }
+  function check() {
+    var bad = [];
+    var email = $('email').value.trim().toLowerCase(); $('email').value = email;
+    if (!$('name').value.trim()) bad.push('name');
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) bad.push('email');
+    if (!$('birth').value) bad.push('birth');
+    if (!picked($('gender')).length) bad.push('gender');
+    if (!$('province').value) bad.push('province');
+    ['name', 'email', 'birth', 'gender', 'province'].forEach(function (k) { $('b-' + k).classList.toggle('err', bad.indexOf(k) >= 0); });
+    if (bad.length) $('b-' + bad[0]).scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return !bad.length;
+  }
+  function showSum(t) { $('sum').innerHTML = t; $('sum').style.display = t ? 'block' : 'none'; }
 
-      // start progress bar (CSS transition: 0→100% over 3s)
-      requestAnimationFrame(function () {
-        requestAnimationFrame(function () {
-          bar.style.width = '100%';
-        });
+  function finish(res, email) {
+    try {
+      if (res.token) localStorage.setItem('lo_lr_token_v1', JSON.stringify({ token: res.token, exp: res.exp }));
+      if (typeof res.reader === 'boolean') localStorage.setItem('lo_lr_reader', res.reader ? '1' : '0');
+      localStorage.setItem('lib_user_email', email);
+      sessionStorage.setItem('lib_user', JSON.stringify({ email: email, name: res.name || $('name').value.trim() }));
+    } catch (e) {}
+    if (res.existed) $('done-t').innerHTML = 'ທ່ານລົງທະບຽນແລ້ວ — ຍິນດີຕ້ອນຮັບ!<span class="en" style="color:#fff">You are already a member — welcome!</span>';
+    $('done').classList.add('show');
+    var url = CATALOG + '?email=' + encodeURIComponent(email) + '&auth=1';
+    $('done-go').onclick = function () { location.href = url; };
+    setTimeout(function () { location.href = url; }, 2500);
+  }
+
+  var sending = false;
+  $('f').addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    if (sending) return;
+    showSum('');
+    if (!check()) return;
+    var email = $('email').value;
+    var body = new URLSearchParams({ action: 'register', name: $('name').value.trim(), email: email, birth: $('birth').value,
+      gender: picked($('gender'))[0] || '', province: $('province').value, attr: picked($('attr')).join('|'), website: $('website').value });
+    sending = true; $('go').disabled = true; $('go').firstChild.textContent = '⏳ ລໍຖ້າແດ່… ';
+    var tries = 0;
+    (function send() {
+      tries++;
+      fetch(API, { method: 'POST', body: body }).then(function (r) { return r.json(); }).then(function (res) {
+        if (res && res.ok && res.token !== undefined) return finish(res, email);
+        if (res && res.ok) return finish(res, email);
+        var map = { name: 'name', email: 'email', birth: 'birth', gender: 'gender', province: 'province' };
+        if (res && map[res.field]) { $('b-' + map[res.field]).classList.add('err'); $('b-' + map[res.field]).scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+        else if (res && res.error === 'busy') showSum('ມີຄົນລົງທະບຽນຫຼາຍ. ກະລຸນາລອງໃໝ່ໃນ 1 ຊົ່ວໂມງ.<br>Too many registrations now. Please try again later.');
+        else showSum('ລົງທະບຽນບໍ່ໄດ້. ກະລຸນາລອງໃໝ່.<br>Could not register. Please try again.');
+        done();
+      }).catch(function () {
+        if (tries < 2) return setTimeout(send, 1500);
+        showSum('ເຊື່ອມຕໍ່ບໍ່ໄດ້. ກວດເບິ່ງອິນເຕີເນັດ ແລ້ວກົດອີກຄັ້ງ.<br>Connection failed. Check the internet and try again.');
+        done();
       });
-
-      // redirect after 3s
-      redirectTimer = setTimeout(goToLibrary, REDIRECT_DELAY);
-    }
-
-    window.goToLibrary = function () {
-      if (redirectTimer) clearTimeout(redirectTimer);
-      window.location.href = LIBRARY_URL;
-    };
-  })();
-  </script>
-
+    })();
+    function done() { sending = false; $('go').disabled = false; $('go').firstChild.textContent = '📚 ລົງທະບຽນ ແລະ ເຂົ້າຫ້ອງສະໝຸດ'; }
+  });
+})();
+</script>
 </body>
 </html>
